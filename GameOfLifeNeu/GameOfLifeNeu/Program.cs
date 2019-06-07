@@ -46,14 +46,14 @@ namespace GameOfLifeNeu
         {
 
             StartOfGame();
-            fieldCurrent = new string[X, X];
-            fieldPrevious = new string[X, X];
+       
 
             ShowGame();
         }
 
+        
 
-        /*  Später!
+        /* Später!
         //Methode, um die Konsolengröße festzulegen:
 
         static public void SetConsoleSize()
@@ -62,6 +62,7 @@ namespace GameOfLifeNeu
             Console.SetBufferSize(consoleLength,consoleWidth);
             Console.SetWindowSize(consoleLength,consoleWidth);
         } */
+
 
         //Methode zum Start des Spiels
         static public void StartOfGame()
@@ -78,10 +79,9 @@ namespace GameOfLifeNeu
 
         //Methode, um Spielverlauf darzustellen
         static public void ShowGame()
+
         {
             ShowField();
-
-
             GoToNextGen();
         }
 
@@ -233,19 +233,15 @@ namespace GameOfLifeNeu
         }
 
         //Methode, um das aktuelle Feld zu erstellen
-        static public string[,] CreateFieldCurrent(int x)
+        static public void CreateFields(int x)
         {
-            string[,] fieldCurrent = new string[x, x];
+            fieldCurrent = new string[x, x];
             FillArray(ref fieldCurrent);
-            return fieldCurrent;
+            fieldPrevious = new string[x, x];
+            FillArray(ref fieldPrevious);
         }
 
-        //Methode, um das vorherige Feld zu erstellen
-        static public string[,] CreateFieldPrevious(int x)
-        {
-            string[,] fieldPrevious = new string[x, x];
-            return fieldPrevious;
-        }
+  
 
         //string[,] name = new string[,]
 

@@ -44,9 +44,7 @@ namespace GameOfLifeNeu
 
         static void Main(string[] args)
         {
-
             StartOfGame();
-       
 
             ShowGame();
         }
@@ -240,6 +238,7 @@ namespace GameOfLifeNeu
             fieldPrevious = new string[x, x];
             FillArray(ref fieldPrevious);
         }
+
 
   
 

@@ -188,6 +188,7 @@ namespace GameOfLifeNeu
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.Spacebar:
+                    case ConsoleKey.Enter:
                         ChangeGen();
                         keyToNextGen = true;
                         break;
@@ -202,7 +203,15 @@ namespace GameOfLifeNeu
 
         static public void ChangeGen()
         {
-            fieldPrevious = fieldCurrent;
+            fieldPrevious = new string[fieldCurrent.GetLength(0), fieldCurrent.GetLength(1)];
+
+            for(int x = 0; x < fieldCurrent.GetLength(0); x++)
+            {
+                for(int y = 0; y < fieldCurrent.GetLength(1); y++)
+                {
+                    fieldPrevious[x, y] = fieldCurrent[x, y];
+                }
+            }
 
             CellStateInNextGen();
         }
@@ -215,7 +224,7 @@ namespace GameOfLifeNeu
             {
                 while (counterY < X)
                 {
-                    CheckNeighbourCount(counterX, counterY);
+                    neighboursCounter = CheckNeighbourCount(counterX, counterY);
                     if (CheckIfCellIsAlive(fieldPrevious[counterX, counterY]) == true)
                     {
                         if (neighboursCounter != 2 || neighboursCounter != 3)
@@ -232,6 +241,7 @@ namespace GameOfLifeNeu
                         }
                     }
 
+                    neighboursCounter = 0;
                     counterY++;
                 }
                 counterY = 0;
@@ -245,7 +255,7 @@ namespace GameOfLifeNeu
         //Methode, um einzelnen Nachbarn zu Überprüfen
         static public void CheckNeighbour(int checkX, int checkY)
         {
-            neighboursCounter = 0;
+            //neighboursCounter = 0;
             try
             {
                 if (fieldPrevious[checkX, checkY] == ALIVE)

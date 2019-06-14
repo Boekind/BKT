@@ -16,7 +16,7 @@ namespace GameOfLifeNeu
         //Zelle ist lebendig: Status "o"
         const string ALIVE = "o";
         //Zelle ist leer: Status "x"
-        const string EMPTY = "x";
+        const string EMPTY = " ";
 
         //Konsolengröße festlegen:
 
@@ -36,20 +36,30 @@ namespace GameOfLifeNeu
         static string[,] fieldPrevious;
 
         //Anzahl der Zellen, die anfangs lebendig sind
-        static int cellCounter;
+        static int initialCellCounter;
 
         //Variable um mit ReadKey(true) in die nächste Generation zu kommen:
 
+        //Anzahl der Nachbarn:
+        static int neighboursCounter;
 
+        //Zufallszahl:
+        static Random rng = new Random();
+
+        //Generation:
+        static int genCounter;
 
         static void Main(string[] args)
         {
             StartOfGame();
+            while (true)
+            {
+                ShowGame();
+            }
 
-            ShowGame();
         }
 
-        
+
 
         /* Später!
         //Methode, um die Konsolengröße festzulegen:
@@ -69,9 +79,9 @@ namespace GameOfLifeNeu
             Console.WriteLine("Conway's Game of Life");
             Console.ForegroundColor = ConsoleColor.White;
             ReadFieldSize();
+            CreateFields(X);
             ReadInitialCells();
-
-            Console.Read();
+            FillInitialCells();
 
         }
 
@@ -79,7 +89,14 @@ namespace GameOfLifeNeu
         static public void ShowGame()
 
         {
-            ShowField();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("Conway's Game of Life");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Generation: " + genCounter);
+            Console.WriteLine("");
+            genCounter++;
+            ShowField(ref fieldCurrent);
             GoToNextGen();
         }
 
@@ -99,6 +116,7 @@ namespace GameOfLifeNeu
                 Console.ForegroundColor = ConsoleColor.White;
                 ReadFieldSize();
             }
+
         }
         //Anzahl der am Anfang lebenden Zellen abrufen (Muster? Random? Überprüfen, ob Zelle schon lebendig ist (Methode CheckIfCellIsAlive?))
         static public void ReadInitialCells()
@@ -106,7 +124,7 @@ namespace GameOfLifeNeu
             Console.WriteLine("Wie viele Zellen sollen in der Ausgangssituation leben?");
             try
             {
-                cellCounter = int.Parse(Console.ReadLine());
+                initialCellCounter = int.Parse(Console.ReadLine());
 
             }
             catch (Exception)
@@ -114,21 +132,40 @@ namespace GameOfLifeNeu
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Eingabe ist keine Zahl! Bitte versuche es erneut.");
                 Console.ForegroundColor = ConsoleColor.White;
-                ReadFieldSize();
+                ReadInitialCells();
             }
 
 
         }
 
+        static public void FillInitialCells()
+        {
+
+            for (int p = 0; p < initialCellCounter; p++)
+            {
+                int rngX = rng.Next(0, X);
+                int rngY = rng.Next(0, X);
+                if (!CheckIfCellIsAlive(fieldCurrent[rngX, rngY]))
+                {
+                    fieldCurrent[rngX, rngY] = ALIVE;
+                }
+                else
+                {
+                    p--;
+                }
+
+            }
+        }
+
         //Methode, um Spielfeld anzeigen zu lassen
-        static public void ShowField()
+        static public void ShowField(ref string[,] field)
         {
             while (counterX < X)
             {
 
                 while (counterY < X)
                 {
-                    Console.Write(fieldCurrent[counterX, counterY]);
+                    Console.Write(field[counterX, counterY] + " ");
                     counterY++;
                 }
                 counterY = 0;
@@ -143,22 +180,22 @@ namespace GameOfLifeNeu
         //Methode um in nächste Generation zu gehen (Per Tastendruck (ReadKey?))
         static public void GoToNextGen()
         {
-
-
-
-
+            bool keyToNextGen = false;
 
             //If(Console.KeyAvailable) -> Nur, wenn eine Taste gedrückt wird!
-
-            switch (Console.ReadKey(true).Key)
+            while (!keyToNextGen)
             {
-                case ConsoleKey.Spacebar:
-                    ChangeGen();
-                    break;
-                default:
-                    //Nichts passiert.
-                    break;
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.Spacebar:
+                        ChangeGen();
+                        keyToNextGen = true;
+                        break;
+                    default:
+                        //Nichts passiert.
+                        break;
 
+                }
             }
         }
 
@@ -167,21 +204,32 @@ namespace GameOfLifeNeu
         {
             fieldPrevious = fieldCurrent;
 
-            //durchlaufen lassen
-            //aktuelle Zelle = CellSateInNextGen()
+            CellStateInNextGen();
         }
 
         //Methode zur Überprüfung, was mit der jeweiligen Zelle in der nächsten Phase passiert
-        static public void CellStateInNextGen(ref string[,] field)
+        static public void CellStateInNextGen()
         {
 
             while (counterX < X)
             {
                 while (counterY < X)
                 {
-                    if (CheckIfCellIsAlive(field[counterX, counterY]) == true)
+                    CheckNeighbourCount(counterX, counterY);
+                    if (CheckIfCellIsAlive(fieldPrevious[counterX, counterY]) == true)
                     {
-                        //Anzahl der Nachbarn
+                        if (neighboursCounter != 2 || neighboursCounter != 3)
+                        {
+                            fieldCurrent[counterX, counterY] = EMPTY;
+                        }
+
+                    }
+                    else
+                    {
+                        if (neighboursCounter == 3)
+                        {
+                            fieldCurrent[counterX, counterY] = ALIVE;
+                        }
                     }
 
                     counterY++;
@@ -193,11 +241,40 @@ namespace GameOfLifeNeu
             counterY = 0;
 
         }
-        //Methode zur Überprüfung der Nachbarn
-        static public void CheckNeighbourCount()
+
+        //Methode, um einzelnen Nachbarn zu Überprüfen
+        static public void CheckNeighbour(int checkX, int checkY)
         {
+            neighboursCounter = 0;
+            try
+            {
+                if (fieldPrevious[checkX, checkY] == ALIVE)
+                {
+                    neighboursCounter++;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
 
         }
+
+        //Methode zur Überprüfung der Anzahl der lebenden Nachbarn
+        static public int CheckNeighbourCount(int coordX, int coordY)  //counterX,counterY
+        {
+            CheckNeighbour(coordX - 1, coordY - 1);
+            CheckNeighbour(coordX, coordY - 1);
+            CheckNeighbour(coordX + 1, coordY - 1);
+            CheckNeighbour(coordX - 1, coordY);
+            CheckNeighbour(coordX + 1, coordY);
+            CheckNeighbour(coordX - 1, coordY + 1);
+            CheckNeighbour(coordX, coordY + 1);
+            CheckNeighbour(coordX + 1, coordY + 1);
+            return neighboursCounter;
+
+        }
+
         //Dazu Methode für den aktuellen Zustand der Zellen:
         //--> Methode: Ist die Zelle lebendig?
         static public bool CheckIfCellIsAlive(string i)
@@ -212,6 +289,7 @@ namespace GameOfLifeNeu
             }
 
         }
+
 
         //Methode, um Array zu füllen:
         static public void FillArray(ref string[,] field)
@@ -240,7 +318,7 @@ namespace GameOfLifeNeu
         }
 
 
-  
+
 
         //string[,] name = new string[,]
 

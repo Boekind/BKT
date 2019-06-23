@@ -16,14 +16,15 @@ namespace GameOfLifeNeu
         //Zelle ist lebendig: Status "o"
         const string ALIVE = "o";
         //Zelle ist leer: Status "x"
-        const string EMPTY = " ";
+        const string EMPTY = "_";
 
         //Konsolengröße festlegen:
 
         //Variable für die Länge:
-        static int consoleLength;
+        //static int consoleLength;
+
         //Variable für die Breite:
-        static int consoleWidth;
+        //static int consoleWidth;
 
         //Array mit aktuellem Stand
         static string[,] fieldCurrent;
@@ -51,15 +52,18 @@ namespace GameOfLifeNeu
 
         static void Main(string[] args)
         {
+            Game();
+        }
+
+        static public void Game()
+        {
+
             StartOfGame();
             while (true)
             {
                 ShowGame();
             }
-
         }
-
-
 
         /* Später!
         //Methode, um die Konsolengröße festzulegen:
@@ -75,6 +79,7 @@ namespace GameOfLifeNeu
         //Methode zum Start des Spiels
         static public void StartOfGame()
         {
+            genCounter = 0;
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Conway's Game of Life");
             Console.ForegroundColor = ConsoleColor.White;
@@ -82,6 +87,7 @@ namespace GameOfLifeNeu
             CreateFields(X);
             ReadInitialCells();
             FillInitialCells();
+            //Resize(X + 5, X + 4);
 
         }
 
@@ -89,6 +95,7 @@ namespace GameOfLifeNeu
         static public void ShowGame()
 
         {
+
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Conway's Game of Life");
@@ -97,6 +104,13 @@ namespace GameOfLifeNeu
             Console.WriteLine("");
             genCounter++;
             ShowField(ref fieldCurrent);
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Zum Neustarten 'R' drücken.");
+            Console.ForegroundColor = ConsoleColor.White;
             GoToNextGen();
         }
 
@@ -104,6 +118,12 @@ namespace GameOfLifeNeu
         static public void ReadFieldSize()
         {
             Console.WriteLine("Wie groß soll das Spielfeld sein?");
+            GetX();
+
+        }
+
+        static public int GetX()
+        {
             try
             {
                 X = int.Parse(Console.ReadLine());
@@ -117,23 +137,42 @@ namespace GameOfLifeNeu
                 ReadFieldSize();
             }
 
+
+            return X;
         }
+
         //Anzahl der am Anfang lebenden Zellen abrufen (Muster? Random? Überprüfen, ob Zelle schon lebendig ist (Methode CheckIfCellIsAlive?))
         static public void ReadInitialCells()
         {
+            bool RICError = false;
             Console.WriteLine("Wie viele Zellen sollen in der Ausgangssituation leben?");
-            try
+            do
             {
-                initialCellCounter = int.Parse(Console.ReadLine());
+                RICError = false;
+                try
+                {
+                    initialCellCounter = int.Parse(Console.ReadLine());
+                    if (initialCellCounter > (X * X))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Zahl ist zu hoch! Bitte versuche es erneut.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        RICError = true;
+                    }
+                    else
+                    {
 
-            }
-            catch (Exception)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Eingabe ist keine Zahl! Bitte versuche es erneut.");
-                Console.ForegroundColor = ConsoleColor.White;
-                ReadInitialCells();
-            }
+                    }
+
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Eingabe ist keine Zahl! Bitte versuche es erneut.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    ReadInitialCells();
+                }
+            } while (RICError);
 
 
         }
@@ -145,7 +184,7 @@ namespace GameOfLifeNeu
             {
                 int rngX = rng.Next(0, X);
                 int rngY = rng.Next(0, X);
-                if (!CheckIfCellIsAlive(fieldCurrent[rngX, rngY]))
+                if (fieldCurrent[rngX, rngY] == EMPTY)
                 {
                     fieldCurrent[rngX, rngY] = ALIVE;
                 }
@@ -165,8 +204,21 @@ namespace GameOfLifeNeu
 
                 while (counterY < X)
                 {
+                    if (field[counterX, counterY] == ALIVE /*&& fieldPrevious[counterX,counterY] == ALIVE*/)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    /* else if( field[counterX,counterY]==EMPTY && fieldPrevious[counterX,counterY] == ALIVE)
+                     {
+                         Console.ForegroundColor = ConsoleColor.Blue;
+                     }  */
+                    else if (field[counterX, counterY] == EMPTY)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
                     Console.Write(field[counterX, counterY] + " ");
                     counterY++;
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 counterY = 0;
                 counterX++;
@@ -192,6 +244,12 @@ namespace GameOfLifeNeu
                         ChangeGen();
                         keyToNextGen = true;
                         break;
+                    case ConsoleKey.R:
+                        Reset();
+                        break;
+                    case ConsoleKey.Escape:
+                        Environment.Exit(0);
+                        break;
                     default:
                         //Nichts passiert.
                         break;
@@ -205,9 +263,9 @@ namespace GameOfLifeNeu
         {
             fieldPrevious = new string[fieldCurrent.GetLength(0), fieldCurrent.GetLength(1)];
 
-            for(int x = 0; x < fieldCurrent.GetLength(0); x++)
+            for (int x = 0; x < fieldCurrent.GetLength(0); x++)
             {
-                for(int y = 0; y < fieldCurrent.GetLength(1); y++)
+                for (int y = 0; y < fieldCurrent.GetLength(1); y++)
                 {
                     fieldPrevious[x, y] = fieldCurrent[x, y];
                 }
@@ -225,9 +283,13 @@ namespace GameOfLifeNeu
                 while (counterY < X)
                 {
                     neighboursCounter = CheckNeighbourCount(counterX, counterY);
-                    if (CheckIfCellIsAlive(fieldPrevious[counterX, counterY]) == true)
+                    if (fieldPrevious[counterX, counterY] == ALIVE)
                     {
-                        if (neighboursCounter != 2 || neighboursCounter != 3)
+                        if (neighboursCounter == 2 || neighboursCounter == 3)
+                        {
+                            //fieldCurrent[counterX, counterY] = ALIVE;
+                        }
+                        else
                         {
                             fieldCurrent[counterX, counterY] = EMPTY;
                         }
@@ -285,6 +347,7 @@ namespace GameOfLifeNeu
 
         }
 
+        /* 
         //Dazu Methode für den aktuellen Zustand der Zellen:
         //--> Methode: Ist die Zelle lebendig?
         static public bool CheckIfCellIsAlive(string i)
@@ -299,6 +362,7 @@ namespace GameOfLifeNeu
             }
 
         }
+        */
 
 
         //Methode, um Array zu füllen:
@@ -327,10 +391,46 @@ namespace GameOfLifeNeu
             FillArray(ref fieldPrevious);
         }
 
+        //Methode, um Variablen zu resetten:
+        static public void Reset()
+        {
+            Console.Clear();
+            // X = 0;
+            // initialCellCounter = 0;
+            // Array.Clear(fieldCurrent,0,fieldCurrent.Length);
+            // Array.Clear(fieldPrevious,0,fieldPrevious.Length);
+
+            Game();
+        }
+
+        public static void Jump(int x, int y)
+        {
+            Console.CursorLeft = x;
+            Console.CursorTop = y;
+        }
 
 
+        public static void Resize(int h, int w)
+        {
+            Console.SetWindowSize(1, 1);
+            Console.SetBufferSize(w, h);
+            Console.SetWindowSize(w, h);
+        }
 
-        //string[,] name = new string[,]
+        public static void WriteCentered(string text, int yIndex)
+        {
+            int beginX = (Console.BufferWidth / 2) - (text.Length / 2);
+
+            Jump(beginX, yIndex);
+
+            Console.Write(text);
+        }
+
+
 
     }
 }
+
+
+//If Abfrage in ShowGame für manuell und automatisch: z.B. true = automatisch; Wird am Anfang abgefragt
+

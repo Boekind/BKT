@@ -8,7 +8,6 @@ namespace GameOfLifeNeu
 {
     class Program
     {
-
         //Mit Array als Übergabeparameter arbeiten!
         static int counterX = 0;
         static int counterY = 0;
@@ -16,7 +15,7 @@ namespace GameOfLifeNeu
         //Zelle ist lebendig: Status "o"
         const string ALIVE = "o";
         //Zelle ist leer: Status "x"
-        const string EMPTY = "_";
+        const string EMPTY = "x";
 
         //Konsolengröße festlegen:
 
@@ -75,11 +74,13 @@ namespace GameOfLifeNeu
             Console.SetWindowSize(consoleLength,consoleWidth);
         } */
 
+        //Titeltext
+        static public void Title
 
         //Methode zum Start des Spiels
         static public void StartOfGame()
         {
-            genCounter = 0;
+            genCounter = -1;
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Conway's Game of Life");
             Console.ForegroundColor = ConsoleColor.White;
@@ -98,9 +99,9 @@ namespace GameOfLifeNeu
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Conway's Game of Life");
+            WriteCentered("Conway's Game of Life", 0) ;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Generation: " + genCounter);
+            WriteCentered($"Generation: {genCounter}",1);
             Console.WriteLine("");
             genCounter++;
             ShowField(ref fieldCurrent);
@@ -425,12 +426,12 @@ namespace GameOfLifeNeu
 
             Console.Write(text);
         }
-
-
-
     }
 }
 
 
 //If Abfrage in ShowGame für manuell und automatisch: z.B. true = automatisch; Wird am Anfang abgefragt
+//Titeltext-Methode
+//Letzte Genereationen vergleichen, weil unendlich/letzter Zustand mit hash Zeug -> Frag Marius
+//LINQ <3
 

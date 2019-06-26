@@ -18,7 +18,7 @@ namespace GameOfLifeNeu
         const string EMPTY = "x";
 
         //Konsolengröße festlegen:
-
+        3333
         //Variable für die Länge:
         //static int consoleLength;
 

@@ -49,6 +49,10 @@ namespace GameOfLifeNeu
         //Generation:
         static int genCounter;
 
+        //Automatisch oder manuell:
+        static bool autorun;
+
+
         static void Main(string[] args)
         {
             Game();
@@ -75,42 +79,51 @@ namespace GameOfLifeNeu
         } */
 
         //Titeltext
-        static public void Title
+        static public void Title()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            WriteCentered("Conway's Game of Life", 0);
+            Console.ForegroundColor = ConsoleColor.White;
+            if (genCounter > -1)
+            {
+                WriteCentered($"Generation: {genCounter}", 1);
+            }
+            else
+            {
+                Console.WriteLine("");
+            }
+            Console.WriteLine("");
+        }
+
+        //Methode, um automatisch oder manuell
+        static public void auto()
+        {
+            //WriteCentered("Soll das Spiel manuell (1) oder automatisch (2) ablaufen?", );
+        }
+        //2. Methode ohne Y oder geht auch anders?
 
         //Methode zum Start des Spiels
         static public void StartOfGame()
         {
-            genCounter = -1;
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Conway's Game of Life");
-            Console.ForegroundColor = ConsoleColor.White;
+            Title();
             ReadFieldSize();
             CreateFields(X);
             ReadInitialCells();
             FillInitialCells();
-            //Resize(X + 5, X + 4);
-
+            //Resize(X, X);
         }
 
         //Methode, um Spielverlauf darzustellen
         static public void ShowGame()
 
         {
-
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            WriteCentered("Conway's Game of Life", 0) ;
-            Console.ForegroundColor = ConsoleColor.White;
-            WriteCentered($"Generation: {genCounter}",1);
-            Console.WriteLine("");
             genCounter++;
+            Title();
+
             ShowField(ref fieldCurrent);
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("Zum Neustarten 'R' drücken.");
+            WriteCentered("Zum Neustarten 'R' drücken.", X + 5);
             Console.ForegroundColor = ConsoleColor.White;
             GoToNextGen();
         }
@@ -120,7 +133,6 @@ namespace GameOfLifeNeu
         {
             Console.WriteLine("Wie groß soll das Spielfeld sein?");
             GetX();
-
         }
 
         static public int GetX()
@@ -238,23 +250,26 @@ namespace GameOfLifeNeu
             //If(Console.KeyAvailable) -> Nur, wenn eine Taste gedrückt wird!
             while (!keyToNextGen)
             {
-                switch (Console.ReadKey(true).Key)
+                if (!autorun)
                 {
-                    case ConsoleKey.Spacebar:
-                    case ConsoleKey.Enter:
-                        ChangeGen();
-                        keyToNextGen = true;
-                        break;
-                    case ConsoleKey.R:
-                        Reset();
-                        break;
-                    case ConsoleKey.Escape:
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        //Nichts passiert.
-                        break;
+                    switch (Console.ReadKey(true).Key)
+                    {
+                        case ConsoleKey.Spacebar:
+                        case ConsoleKey.Enter:
+                            ChangeGen();
+                            keyToNextGen = true;
+                            break;
+                        case ConsoleKey.R:
+                            Reset();
+                            break;
+                        case ConsoleKey.Escape:
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            //Nichts passiert.
+                            break;
 
+                    }
                 }
             }
         }
@@ -434,4 +449,5 @@ namespace GameOfLifeNeu
 //Titeltext-Methode
 //Letzte Genereationen vergleichen, weil unendlich/letzter Zustand mit hash Zeug -> Frag Marius
 //LINQ <3
+
 

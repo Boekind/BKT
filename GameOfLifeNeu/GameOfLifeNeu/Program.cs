@@ -30,7 +30,7 @@ namespace GameOfLifeNeu
         //Variable X:
         static int X;
         //Variable Y:
-        //static int Y;  
+        static int Y;
 
         //Array mit vorherigem Stand
         static string[,] fieldPrevious;
@@ -47,10 +47,10 @@ namespace GameOfLifeNeu
         static Random rng = new Random();
 
         //Generation:
-        static int genCounter;
+        static int genCounter = -1;
 
         //Automatisch oder manuell:
-        static bool autorun;
+        static bool autorun = false;
 
 
         static void Main(string[] args)
@@ -64,29 +64,23 @@ namespace GameOfLifeNeu
             StartOfGame();
             while (true)
             {
+                System.Threading.Thread.Sleep(1000);
                 ShowGame();
             }
         }
 
-        /* Später!
-        //Methode, um die Konsolengröße festzulegen:
 
-        static public void SetConsoleSize()
-        {
-            //consoleLength/Width = Spielfeldlänge + 1/2/3/...?
-            Console.SetBufferSize(consoleLength,consoleWidth);
-            Console.SetWindowSize(consoleLength,consoleWidth);
-        } */
+
 
         //Titeltext
         static public void Title()
         {
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            WriteCentered("Conway's Game of Life", 0);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            WriteCenteredY("Conway's Game of Life", 0);
             Console.ForegroundColor = ConsoleColor.White;
             if (genCounter > -1)
             {
-                WriteCentered($"Generation: {genCounter}", 1);
+                WriteCenteredY($"Generation: {genCounter}", 1);
             }
             else
             {
@@ -96,34 +90,56 @@ namespace GameOfLifeNeu
         }
 
         //Methode, um automatisch oder manuell
-        static public void auto()
+        static public void Auto()
         {
-            //WriteCentered("Soll das Spiel manuell (1) oder automatisch (2) ablaufen?", );
+            bool autoError = false;
+
+            WriteCenteredY("Soll das Spiel manuell (m) oder automatisch (a) ablaufen?", 8);
+            WriteCenteredY("", 9);
+
+            do
+            {
+                if (Console.ReadLine() == "m")/*  || int.Parse(Console.ReadLine()) == 2)*/
+                {
+
+                }
+                else if (Console.ReadLine() == "a")
+                {
+                    autorun = true;
+                }
+                else
+                {
+                    autoError = true;
+                }
+            } while (autoError);
         }
         //2. Methode ohne Y oder geht auch anders?
 
         //Methode zum Start des Spiels
         static public void StartOfGame()
         {
+            Console.CursorVisible = true;
             Title();
             ReadFieldSize();
             CreateFields(X);
             ReadInitialCells();
             FillInitialCells();
-            //Resize(X, X);
+            Auto();
+            //Resize(X + 50, X + 50);
         }
 
         //Methode, um Spielverlauf darzustellen
         static public void ShowGame()
 
         {
+            Console.CursorVisible = false;
             Console.Clear();
             genCounter++;
             Title();
 
             ShowField(ref fieldCurrent);
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            WriteCentered("Zum Neustarten 'R' drücken.", X + 5);
+            WriteCenteredY("Zum Neustarten 'R' drücken.", X + 5);
             Console.ForegroundColor = ConsoleColor.White;
             GoToNextGen();
         }
@@ -131,59 +147,103 @@ namespace GameOfLifeNeu
         //Methode um Spielfeldgröße einzulesen
         static public void ReadFieldSize()
         {
-            Console.WriteLine("Wie groß soll das Spielfeld sein?");
+            WriteCenteredY("Wie groß soll das Spielfeld sein?", 3);
+
             GetX();
+            GetY();
+
         }
 
         static public int GetX()
         {
-            try
-            {
-                X = int.Parse(Console.ReadLine());
+            bool getXError = false;
 
-            }
-            catch (Exception)
+            do
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Eingabe ist keine Zahl! Bitte versuche es erneut.");
-                Console.ForegroundColor = ConsoleColor.White;
-                ReadFieldSize();
-            }
+                getXError = false;
+                WriteCenteredY("X: ", 4);
+                try
+                {
+                    X = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    WriteCenteredY("Eingabe ist keine Zahl! Bitte versuche es erneut.", 4);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    getXError = true;
+                    System.Threading.Thread.Sleep(2000);
+                    WriteCenteredY("                                                    ", 4);
 
+                }
+            } while (getXError);
 
             return X;
+        }
+
+        static public int GetY()
+        {
+
+            bool getYError = false;
+
+            do
+            {
+                getYError = false;
+                WriteCenteredY("Y: ", 5);
+                try
+                {
+                    Y = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    WriteCenteredY("Eingabe ist keine Zahl! Bitte versuche es erneut.", 5);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    getYError = true;
+                    System.Threading.Thread.Sleep(2000);
+                    WriteCenteredY("                                                    ", 5);
+                }
+
+            } while (getYError);
+            return Y;
         }
 
         //Anzahl der am Anfang lebenden Zellen abrufen (Muster? Random? Überprüfen, ob Zelle schon lebendig ist (Methode CheckIfCellIsAlive?))
         static public void ReadInitialCells()
         {
             bool RICError = false;
-            Console.WriteLine("Wie viele Zellen sollen in der Ausgangssituation leben?");
+            WriteCenteredY("Wie viele Zellen sollen in der Ausgangssituation leben?", 6);
+            WriteCenteredY("", 7);
             do
             {
                 RICError = false;
+                WriteCenteredY("", 7);
                 try
                 {
                     initialCellCounter = int.Parse(Console.ReadLine());
                     if (initialCellCounter > (X * X))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Zahl ist zu hoch! Bitte versuche es erneut.");
+                        WriteCenteredY("Zahl ist zu hoch! Bitte versuche es erneut.", 7);
                         Console.ForegroundColor = ConsoleColor.White;
                         RICError = true;
+                        System.Threading.Thread.Sleep(2000);
+                        WriteCenteredY("                                                                                                 ", 7);
                     }
                     else
                     {
-
                     }
 
                 }
                 catch (Exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Eingabe ist keine Zahl! Bitte versuche es erneut.");
+                    WriteCenteredY("Eingabe ist keine Zahl! Bitte versuche es erneut.", 7);
                     Console.ForegroundColor = ConsoleColor.White;
-                    ReadInitialCells();
+                    //ReadInitialCells();
+                    RICError = true;
+                    System.Threading.Thread.Sleep(2000);
+                    WriteCenteredY("                                                                                                 ", 7);
                 }
             } while (RICError);
 
@@ -411,43 +471,64 @@ namespace GameOfLifeNeu
         static public void Reset()
         {
             Console.Clear();
-            // X = 0;
-            // initialCellCounter = 0;
+            X = 0;
+            Y = 0;
+            initialCellCounter = 0;
+            genCounter = -1;
             // Array.Clear(fieldCurrent,0,fieldCurrent.Length);
             // Array.Clear(fieldPrevious,0,fieldPrevious.Length);
 
             Game();
         }
 
-        public static void Jump(int x, int y)
+        public static void JumpY(int x, int y)
         {
             Console.CursorLeft = x;
             Console.CursorTop = y;
         }
 
 
-        public static void Resize(int h, int w)
+
+
+        public static void WriteCenteredY(string text, int yIndex)
+        {
+            int beginX = (Console.BufferWidth / 2) - (text.Length / 2);
+
+            JumpY(beginX, yIndex);
+
+            Console.Write(text);
+        }
+
+        public static void JumpX(int x)
+        {
+            Console.CursorLeft = x;
+        }
+
+        public static void WriteCenteredX(string text)
+        {
+            int beginX = (Console.BufferWidth / 2) - (text.Length / 2);
+
+            JumpX(beginX);
+        }
+
+        //Methode, um die Konsolengröße festzulegen:
+        public static void Resize(int w, int h)
         {
             Console.SetWindowSize(1, 1);
             Console.SetBufferSize(w, h);
             Console.SetWindowSize(w, h);
         }
 
-        public static void WriteCentered(string text, int yIndex)
-        {
-            int beginX = (Console.BufferWidth / 2) - (text.Length / 2);
-
-            Jump(beginX, yIndex);
-
-            Console.Write(text);
-        }
     }
 }
 
 
 //If Abfrage in ShowGame für manuell und automatisch: z.B. true = automatisch; Wird am Anfang abgefragt
 //Titeltext-Methode
-//Letzte Genereationen vergleichen, weil unendlich/letzter Zustand mit hash Zeug -> Frag Marius
+//Letzte Genereationen vergleichen, weil unendlich/letzter Zustand mit hash Zeug -> Frag Marius!
 //LINQ <3
+//Resize -> Frag Marius!
+//Fehlermeldungen!
+//Fehlermeldung, wenn Zahl zu hoch => Ist keine Zahl?! -> Frag Marius! 
 
 

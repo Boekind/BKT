@@ -1,7 +1,0 @@
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\bin\Debug\GameOfLifeNeu.exe.config
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\bin\Debug\GameOfLifeNeu.exe
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\bin\Debug\GameOfLifeNeu.pdb
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\obj\Debug\GameOfLifeNeu.csprojAssemblyReference.cache
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\obj\Debug\GameOfLifeNeu.csproj.CoreCompileInputs.cache
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\obj\Debug\GameOfLifeNeu.exe
-C:\Users\Bökint\Documents\GIT BKT\BKT\GameOfLifeNeu\GameOfLifeNeu\obj\Debug\GameOfLifeNeu.pdb

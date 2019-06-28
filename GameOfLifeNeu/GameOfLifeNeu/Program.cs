@@ -408,7 +408,6 @@ namespace GameOfLifeNeu
             }
             counterX = 0;
             counterY = 0;
-
         }
 
         //Methode, um einzelnen Nachbarn zu Überprüfen

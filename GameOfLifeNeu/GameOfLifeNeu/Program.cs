@@ -99,35 +99,53 @@ namespace GameOfLifeNeu
 
             do
             {
-                if (Console.ReadLine() == "m")/*  || int.Parse(Console.ReadLine()) == 2)*/
-                {
+                var key = Console.ReadKey().Key;
+                autoError = false;
 
+                if (key == ConsoleKey.M)
+                {
+                    autorun = false;
                 }
-                else if (Console.ReadLine() == "a")
+                else if (key == ConsoleKey.A)
                 {
                     autorun = true;
                 }
                 else
                 {
                     autoError = true;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    WriteCenteredY("Ungültige Eingabe! Bitte versuche es erneut.", 9);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    System.Threading.Thread.Sleep(2000);
+                    WriteCenteredY("", 9);
                 }
             } while (autoError);
         }
         //2. Methode ohne Y oder geht auch anders?
 
+
         //Methode zum Start des Spiels
         static public void StartOfGame()
         {
             Console.CursorVisible = true;
+            for(int i = 10;i<=100; i+=10)
+            {
+                WriteCenteredY($"Spiel wird geladen...{i}%", 0);
+                System.Threading.Thread.Sleep(100);
+            }
+            Console.Clear();
             Title();
+            System.Threading.Thread.Sleep(1000);
             ReadFieldSize();
-            CreateFields(X);
+            CreateFields(X,Y);
             ReadInitialCells();
             FillInitialCells();
+
+
             Auto();
             //Resize(X + 50, X + 50);
         }
-
+        
         //Methode, um Spielverlauf darzustellen
         static public void ShowGame()
 
@@ -154,7 +172,8 @@ namespace GameOfLifeNeu
 
         }
 
-        static public int GetX()
+
+        static public void GetX()
         {
             bool getXError = false;
 
@@ -178,10 +197,10 @@ namespace GameOfLifeNeu
                 }
             } while (getXError);
 
-            return X;
+            
         }
 
-        static public int GetY()
+        static public void GetY()
         {
 
             bool getYError = false;
@@ -205,7 +224,7 @@ namespace GameOfLifeNeu
                 }
 
             } while (getYError);
-            return Y;
+           
         }
 
         //Anzahl der am Anfang lebenden Zellen abrufen (Muster? Random? Überprüfen, ob Zelle schon lebendig ist (Methode CheckIfCellIsAlive?))
@@ -213,7 +232,9 @@ namespace GameOfLifeNeu
         {
             bool RICError = false;
             WriteCenteredY("Wie viele Zellen sollen in der Ausgangssituation leben?", 6);
-            WriteCenteredY("", 7);
+            //WriteCenteredY("", 7);
+
+
             do
             {
                 RICError = false;
@@ -221,7 +242,7 @@ namespace GameOfLifeNeu
                 try
                 {
                     initialCellCounter = int.Parse(Console.ReadLine());
-                    if (initialCellCounter > (X * X))
+                    if (initialCellCounter > (X * Y))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         WriteCenteredY("Zahl ist zu hoch! Bitte versuche es erneut.", 7);
@@ -256,7 +277,7 @@ namespace GameOfLifeNeu
             for (int p = 0; p < initialCellCounter; p++)
             {
                 int rngX = rng.Next(0, X);
-                int rngY = rng.Next(0, X);
+                int rngY = rng.Next(0, Y);
                 if (fieldCurrent[rngX, rngY] == EMPTY)
                 {
                     fieldCurrent[rngX, rngY] = ALIVE;
@@ -275,7 +296,7 @@ namespace GameOfLifeNeu
             while (counterX < X)
             {
 
-                while (counterY < X)
+                while (counterY < Y)
                 {
                     if (field[counterX, counterY] == ALIVE /*&& fieldPrevious[counterX,counterY] == ALIVE*/)
                     {
@@ -356,7 +377,7 @@ namespace GameOfLifeNeu
 
             while (counterX < X)
             {
-                while (counterY < X)
+                while (counterY < Y)
                 {
                     neighboursCounter = CheckNeighbourCount(counterX, counterY);
                     if (fieldPrevious[counterX, counterY] == ALIVE)
@@ -459,11 +480,11 @@ namespace GameOfLifeNeu
         }
 
         //Methode, um das aktuelle Feld zu erstellen
-        static public void CreateFields(int x)
+        static public void CreateFields(int x, int y)
         {
-            fieldCurrent = new string[x, x];
+            fieldCurrent = new string[x, y];
             FillArray(ref fieldCurrent);
-            fieldPrevious = new string[x, x];
+            fieldPrevious = new string[x, y];
             FillArray(ref fieldPrevious);
         }
 

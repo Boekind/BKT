@@ -97,6 +97,7 @@ namespace GameOfLifeNeu
             WriteCenteredY("Soll das Spiel manuell (m) oder automatisch (a) ablaufen?", 8);
             WriteCenteredY("", 9);
 
+
             do
             {
                 var key = Console.ReadKey().Key;
@@ -534,6 +535,11 @@ namespace GameOfLifeNeu
         //Methode, um die Konsolengröße festzulegen:
         public static void Resize(int w, int h)
         {
+            if (w < 44)
+                w = 44;
+            if (h < 22)
+                h = 22;
+
             Console.SetWindowSize(1, 1);
             Console.SetBufferSize(w, h);
             Console.SetWindowSize(w, h);
@@ -550,5 +556,6 @@ namespace GameOfLifeNeu
 //Resize -> Frag Marius!
 //Fehlermeldungen!
 //Fehlermeldung, wenn Zahl zu hoch => Ist keine Zahl?! -> Frag Marius! 
+//Bei Anzahl Nachbarn switch case anstatt If -> Schneller?
 
 

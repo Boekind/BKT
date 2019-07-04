@@ -71,11 +71,46 @@ namespace GameOfLifeNeu
 
 
 
+        //Titeltextfarbwechsel am Anfang
+        static public void StartTitle()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            WriteCenteredY("Conway's Game of Life", 0);
+
+            System.Threading.Thread.Sleep(200);
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            WriteCenteredY("Conway's Game of Life", 0);
+
+            System.Threading.Thread.Sleep(200);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            WriteCenteredY("Conway's Game of Life", 0);
+
+            System.Threading.Thread.Sleep(200);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            WriteCenteredY("Conway's Game of Life", 0);
+
+            System.Threading.Thread.Sleep(200);
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            WriteCenteredY("Conway's Game of Life", 0);
+
+            System.Threading.Thread.Sleep(200);
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            WriteCenteredY("Conway's Game of Life", 0);
+            Console.ForegroundColor = ConsoleColor.White;
+
+            System.Threading.Thread.Sleep(200);
+
+        }
 
         //Titeltext
         static public void Title()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Red;
             WriteCenteredY("Conway's Game of Life", 0);
             Console.ForegroundColor = ConsoleColor.White;
             if (genCounter > -1)
@@ -129,24 +164,27 @@ namespace GameOfLifeNeu
         static public void StartOfGame()
         {
             Console.CursorVisible = true;
-            for(int i = 10;i<=100; i+=10)
+            for (int i = 10; i <= 100; i += 10)
             {
                 WriteCenteredY($"Spiel wird geladen...{i}%", 0);
                 System.Threading.Thread.Sleep(100);
             }
             Console.Clear();
+
+
+            StartTitle();
             Title();
             System.Threading.Thread.Sleep(1000);
             ReadFieldSize();
-            CreateFields(X,Y);
+            CreateFields(X, Y);
             ReadInitialCells();
             FillInitialCells();
 
 
             Auto();
-            //Resize(X + 50, X + 50);
+            Resize(X + 10 * 2, Y + 8 * 2);
         }
-        
+
         //Methode, um Spielverlauf darzustellen
         static public void ShowGame()
 
@@ -155,10 +193,10 @@ namespace GameOfLifeNeu
             Console.Clear();
             genCounter++;
             Title();
-
+            Console.WriteLine("");
             ShowField(ref fieldCurrent);
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            WriteCenteredY("Zum Neustarten 'R' drücken.", X + 5);
+            WriteCenteredY("Zum Neustarten 'R' drücken.", Y + 6);
             Console.ForegroundColor = ConsoleColor.White;
             GoToNextGen();
         }
@@ -181,7 +219,7 @@ namespace GameOfLifeNeu
             do
             {
                 getXError = false;
-                WriteCenteredY("X: ", 4);
+                WriteCenteredY("Länge: ", 4);
                 try
                 {
                     X = int.Parse(Console.ReadLine());
@@ -198,7 +236,7 @@ namespace GameOfLifeNeu
                 }
             } while (getXError);
 
-            
+
         }
 
         static public void GetY()
@@ -209,7 +247,7 @@ namespace GameOfLifeNeu
             do
             {
                 getYError = false;
-                WriteCenteredY("Y: ", 5);
+                WriteCenteredY("Breite: ", 5);
                 try
                 {
                     Y = int.Parse(Console.ReadLine());
@@ -225,7 +263,7 @@ namespace GameOfLifeNeu
                 }
 
             } while (getYError);
-           
+
         }
 
         //Anzahl der am Anfang lebenden Zellen abrufen (Muster? Random? Überprüfen, ob Zelle schon lebendig ist (Methode CheckIfCellIsAlive?))
@@ -467,7 +505,7 @@ namespace GameOfLifeNeu
         {
             while (counterX < X)
             {
-                while (counterY < X)
+                while (counterY < Y)
                 {
                     field[counterX, counterY] = EMPTY;
                     counterY++;
@@ -491,6 +529,7 @@ namespace GameOfLifeNeu
         //Methode, um Variablen zu resetten:
         static public void Reset()
         {
+            Resize(100, 100);
             Console.Clear();
             X = 0;
             Y = 0;
@@ -535,10 +574,10 @@ namespace GameOfLifeNeu
         //Methode, um die Konsolengröße festzulegen:
         public static void Resize(int w, int h)
         {
-            if (w < 44)
+            /* if (w > 44)
                 w = 44;
-            if (h < 22)
-                h = 22;
+            if (h > 22)
+                h = 22;*/
 
             Console.SetWindowSize(1, 1);
             Console.SetBufferSize(w, h);
@@ -550,7 +589,7 @@ namespace GameOfLifeNeu
 
 
 //If Abfrage in ShowGame für manuell und automatisch: z.B. true = automatisch; Wird am Anfang abgefragt
-//Titeltext-Methode
+
 //Letzte Genereationen vergleichen, weil unendlich/letzter Zustand mit hash Zeug -> Frag Marius!
 //LINQ <3
 //Resize -> Frag Marius!
@@ -558,4 +597,5 @@ namespace GameOfLifeNeu
 //Fehlermeldung, wenn Zahl zu hoch => Ist keine Zahl?! -> Frag Marius! 
 //Bei Anzahl Nachbarn switch case anstatt If -> Schneller?
 
+//X und Y vertauscht; bei Versuch, zu tauschen
 

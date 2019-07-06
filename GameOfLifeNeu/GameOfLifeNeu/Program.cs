@@ -163,7 +163,8 @@ namespace GameOfLifeNeu
         //Methode zum Start des Spiels
         static public void StartOfGame()
         {
-            Console.CursorVisible = true;
+            Resize(60, 22);
+            Console.CursorVisible = false;
             for (int i = 10; i <= 100; i += 10)
             {
                 WriteCenteredY($"Spiel wird geladen...{i}%", 0);
@@ -182,7 +183,8 @@ namespace GameOfLifeNeu
 
 
             Auto();
-            Resize(X + 10 * 2, Y + 8 * 2);
+
+            Resize((Y * 2) + 4, X + 8);
         }
 
         //Methode, um Spielverlauf darzustellen
@@ -196,7 +198,7 @@ namespace GameOfLifeNeu
             Console.WriteLine("");
             ShowField(ref fieldCurrent);
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            WriteCenteredY("Zum Neustarten 'R' drücken.", Y + 6);
+            WriteCenteredY("Zum Neustarten 'R' drücken.", X + 4);
             Console.ForegroundColor = ConsoleColor.White;
             GoToNextGen();
         }
@@ -529,7 +531,6 @@ namespace GameOfLifeNeu
         //Methode, um Variablen zu resetten:
         static public void Reset()
         {
-            Resize(100, 100);
             Console.Clear();
             X = 0;
             Y = 0;
@@ -574,10 +575,10 @@ namespace GameOfLifeNeu
         //Methode, um die Konsolengröße festzulegen:
         public static void Resize(int w, int h)
         {
-            /* if (w > 44)
+            if (w < 44)
                 w = 44;
-            if (h > 22)
-                h = 22;*/
+            if (h < 22)
+                h = 22;
 
             Console.SetWindowSize(1, 1);
             Console.SetBufferSize(w, h);
@@ -598,4 +599,4 @@ namespace GameOfLifeNeu
 //Bei Anzahl Nachbarn switch case anstatt If -> Schneller?
 
 //X und Y vertauscht; bei Versuch, zu tauschen
-
+//Resize festen Mindestwert!

@@ -104,7 +104,6 @@ namespace GameOfLifeNeu
             Console.ForegroundColor = ConsoleColor.White;
 
             System.Threading.Thread.Sleep(200);
-
         }
 
         //Titeltext
@@ -233,7 +232,7 @@ namespace GameOfLifeNeu
                     Console.ForegroundColor = ConsoleColor.White;
                     getXError = true;
                     System.Threading.Thread.Sleep(2000);
-                    WriteCenteredY("                                                    ", 4);
+                    WriteCenteredY("                                                 ", 4);
 
                 }
             } while (getXError);
@@ -261,7 +260,7 @@ namespace GameOfLifeNeu
                     Console.ForegroundColor = ConsoleColor.White;
                     getYError = true;
                     System.Threading.Thread.Sleep(2000);
-                    WriteCenteredY("                                                    ", 5);
+                    WriteCenteredY("                                                 ", 5);
                 }
 
             } while (getYError);
@@ -290,7 +289,7 @@ namespace GameOfLifeNeu
                         Console.ForegroundColor = ConsoleColor.White;
                         RICError = true;
                         System.Threading.Thread.Sleep(2000);
-                        WriteCenteredY("                                                                                                 ", 7);
+                        WriteCenteredY("                                                 ", 7);
                     }
                     else
                     {
@@ -305,7 +304,7 @@ namespace GameOfLifeNeu
                     //ReadInitialCells();
                     RICError = true;
                     System.Threading.Thread.Sleep(2000);
-                    WriteCenteredY("                                                                                                 ", 7);
+                    WriteCenteredY("                                                 ", 7);
                 }
             } while (RICError);
 
@@ -545,6 +544,7 @@ namespace GameOfLifeNeu
         public static void JumpY(int x, int y)
         {
             Console.CursorLeft = x;
+
             Console.CursorTop = y;
         }
 
@@ -589,14 +589,14 @@ namespace GameOfLifeNeu
 }
 
 
+
 //If Abfrage in ShowGame für manuell und automatisch: z.B. true = automatisch; Wird am Anfang abgefragt
 
-//Letzte Genereationen vergleichen, weil unendlich/letzter Zustand mit hash Zeug -> Frag Marius!
+
+
+
+
 //LINQ <3
 //Resize -> Frag Marius!
 //Fehlermeldungen!
-//Fehlermeldung, wenn Zahl zu hoch => Ist keine Zahl?! -> Frag Marius! 
 //Bei Anzahl Nachbarn switch case anstatt If -> Schneller?
-
-//X und Y vertauscht; bei Versuch, zu tauschen
-//Resize festen Mindestwert!

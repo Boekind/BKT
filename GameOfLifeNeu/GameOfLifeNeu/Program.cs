@@ -14,8 +14,14 @@ namespace GameOfLifeNeu
 
         //Zelle ist lebendig: Status "o"
         const string ALIVE = "o";
+        //Anzahl der lebenden Zellen
+        static int aliveCounter;
         //Zelle ist leer: Status "x"
         const string EMPTY = "x";
+        //Anzahl der toten Zellen
+        // static int deadCounter;
+
+
 
         //Konsolengröße festlegen:
 
@@ -64,7 +70,6 @@ namespace GameOfLifeNeu
             StartOfGame();
             while (true)
             {
-                System.Threading.Thread.Sleep(1000);
                 ShowGame();
             }
         }
@@ -72,39 +77,7 @@ namespace GameOfLifeNeu
 
 
         //Titeltextfarbwechsel am Anfang
-        static public void StartTitle()
-        {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            WriteCenteredY("Conway's Game of Life", 0);
 
-            System.Threading.Thread.Sleep(200);
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            WriteCenteredY("Conway's Game of Life", 0);
-
-            System.Threading.Thread.Sleep(200);
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            WriteCenteredY("Conway's Game of Life", 0);
-
-            System.Threading.Thread.Sleep(200);
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            WriteCenteredY("Conway's Game of Life", 0);
-
-            System.Threading.Thread.Sleep(200);
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-            WriteCenteredY("Conway's Game of Life", 0);
-
-            System.Threading.Thread.Sleep(200);
-
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            WriteCenteredY("Conway's Game of Life", 0);
-            Console.ForegroundColor = ConsoleColor.White;
-
-            System.Threading.Thread.Sleep(200);
-        }
 
         //Titeltext
         static public void Title()
@@ -151,7 +124,7 @@ namespace GameOfLifeNeu
                     Console.ForegroundColor = ConsoleColor.Red;
                     WriteCenteredY("Ungültige Eingabe! Bitte versuche es erneut.", 9);
                     Console.ForegroundColor = ConsoleColor.White;
-                    System.Threading.Thread.Sleep(2000);
+                    System.Threading.Thread.Sleep(1000);
                     WriteCenteredY("", 9);
                 }
             } while (autoError);
@@ -167,14 +140,13 @@ namespace GameOfLifeNeu
             for (int i = 10; i <= 100; i += 10)
             {
                 WriteCenteredY($"Spiel wird geladen...{i}%", 0);
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(80);
             }
             Console.Clear();
 
 
-            StartTitle();
             Title();
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(500);
             ReadFieldSize();
             CreateFields(X, Y);
             ReadInitialCells();
@@ -183,21 +155,23 @@ namespace GameOfLifeNeu
 
             Auto();
 
-            Resize((Y * 2) + 4, X + 8);
+            Resize((Y * 2) + 4, X + 9);
         }
 
         //Methode, um Spielverlauf darzustellen
         static public void ShowGame()
 
         {
+            aliveCounter = 0;
             Console.CursorVisible = false;
             Console.Clear();
             genCounter++;
             Title();
             Console.WriteLine("");
             ShowField(ref fieldCurrent);
+            WriteCenteredY($"Lebende Zellen: {aliveCounter} | Tote Zellen: {X * Y - aliveCounter}", X + 5);
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            WriteCenteredY("Zum Neustarten 'R' drücken.", X + 4);
+            WriteCenteredY("Zum Neustarten 'R' drücken.", X + 7);
             Console.ForegroundColor = ConsoleColor.White;
             GoToNextGen();
         }
@@ -341,6 +315,7 @@ namespace GameOfLifeNeu
                     if (field[counterX, counterY] == ALIVE /*&& fieldPrevious[counterX,counterY] == ALIVE*/)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
+                        aliveCounter++;
                     }
                     /* else if( field[counterX,counterY]==EMPTY && fieldPrevious[counterX,counterY] == ALIVE)
                      {
@@ -368,7 +343,8 @@ namespace GameOfLifeNeu
         {
             bool keyToNextGen = false;
 
-            //If(Console.KeyAvailable) -> Nur, wenn eine Taste gedrückt wird!
+
+            //-> Nur, wenn eine Taste gedrückt wird!
             while (!keyToNextGen)
             {
                 if (!autorun)
@@ -383,16 +359,31 @@ namespace GameOfLifeNeu
                         case ConsoleKey.R:
                             Reset();
                             break;
-                        case ConsoleKey.Escape:
+                        /*case ConsoleKey.Escape:
                             Environment.Exit(0);
-                            break;
+                            break;*/                           //??????
                         default:
                             //Nichts passiert.
                             break;
 
                     }
+
+                }
+                else
+                {
+                    ChangeGen();
+                    keyToNextGen = true;
+                    System.Threading.Thread.Sleep(200); //Alle 0,2 Sekunden wird das Array neu generiert
+                    if (Console.KeyAvailable)
+                    {
+                        if (Console.ReadKey(true).Key == ConsoleKey.R)
+                        {
+                            Reset();
+                        }
+                    }
                 }
             }
+
         }
 
 
@@ -530,6 +521,7 @@ namespace GameOfLifeNeu
         //Methode, um Variablen zu resetten:
         static public void Reset()
         {
+            aliveCounter = 0;
             Console.Clear();
             X = 0;
             Y = 0;
@@ -591,12 +583,20 @@ namespace GameOfLifeNeu
 
 
 //If Abfrage in ShowGame für manuell und automatisch: z.B. true = automatisch; Wird am Anfang abgefragt
-
+//Ausprobieren am Laptop Länge = 53 und höher!
+//Ausprobieren am Laptop Breite = ??? und höher!
 
 
 
 
 //LINQ <3
-//Resize -> Frag Marius!
-//Fehlermeldungen!
 //Bei Anzahl Nachbarn switch case anstatt If -> Schneller?
+
+
+//Änderungen 10.07. Arbeit:
+//-Läuft automatisch durch 
+//  -If Key.Available bei automatisch, damit Reset
+//  -Autorun-Abfrage um die Keys für in die nächste Generation
+
+//-Lebende/tote Zellen schreiben lassen
+//  -Reset weiter nach unten verlagert und bei Resize aus X+8 X+9 gemacht

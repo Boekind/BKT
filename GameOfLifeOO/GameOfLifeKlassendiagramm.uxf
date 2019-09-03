@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>250</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Cell
+--
++IsAlive: bool
++IsAliveInNextGen: bool
++Neighbours: int
+--
++ChangeState(): bool
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>210</y>
+      <w>360</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Rules
+--
+
+--
+_-WriteCentered(string text, int yIndex):void_
+_-JumpY(int x, int y):void_
+-CheckStateInNextGen(Cell cell, int neighbours):void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>480</y>
+      <w>210</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Board
+--
++Height: int
++Width: int
++board: Cell[]
+--
++ResetBoard():void
++FillInitialCells(int InitialCells):void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>650</x>
+      <y>470</y>
+      <w>210</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>GameOfLife
+--
++board: Board
+--
++StartGame():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>40</y>
+      <w>400</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>UI
+--
+
+--
+_-WriteCentered(string text, int yIndex):void_
+_-JumpY(int x, int y):void_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

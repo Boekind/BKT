@@ -1,0 +1,11 @@
+H:\C#\BKT\BKT\bin\Debug\netcoreapp2.2\BKT.deps.json
+H:\C#\BKT\BKT\bin\Debug\netcoreapp2.2\BKT.runtimeconfig.json
+H:\C#\BKT\BKT\bin\Debug\netcoreapp2.2\BKT.runtimeconfig.dev.json
+H:\C#\BKT\BKT\bin\Debug\netcoreapp2.2\BKT.dll
+H:\C#\BKT\BKT\bin\Debug\netcoreapp2.2\BKT.pdb
+H:\C#\BKT\BKT\obj\Debug\netcoreapp2.2\BKT.csprojAssemblyReference.cache
+H:\C#\BKT\BKT\obj\Debug\netcoreapp2.2\BKT.csproj.CoreCompileInputs.cache
+H:\C#\BKT\BKT\obj\Debug\netcoreapp2.2\BKT.AssemblyInfoInputs.cache
+H:\C#\BKT\BKT\obj\Debug\netcoreapp2.2\BKT.AssemblyInfo.cs
+H:\C#\BKT\BKT\obj\Debug\netcoreapp2.2\BKT.dll
+H:\C#\BKT\BKT\obj\Debug\netcoreapp2.2\BKT.pdb

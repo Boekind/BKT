@@ -1,0 +1,10 @@
+H:\C#\BKT\GameOfLifeAlt\bin\Debug\netcoreapp2.2\GameOfLifeAlt.deps.json
+H:\C#\BKT\GameOfLifeAlt\bin\Debug\netcoreapp2.2\GameOfLifeAlt.runtimeconfig.json
+H:\C#\BKT\GameOfLifeAlt\bin\Debug\netcoreapp2.2\GameOfLifeAlt.runtimeconfig.dev.json
+H:\C#\BKT\GameOfLifeAlt\bin\Debug\netcoreapp2.2\GameOfLifeAlt.dll
+H:\C#\BKT\GameOfLifeAlt\bin\Debug\netcoreapp2.2\GameOfLifeAlt.pdb
+H:\C#\BKT\GameOfLifeAlt\obj\Debug\netcoreapp2.2\GameOfLifeAlt.csproj.CoreCompileInputs.cache
+H:\C#\BKT\GameOfLifeAlt\obj\Debug\netcoreapp2.2\GameOfLifeAlt.AssemblyInfoInputs.cache
+H:\C#\BKT\GameOfLifeAlt\obj\Debug\netcoreapp2.2\GameOfLifeAlt.AssemblyInfo.cs
+H:\C#\BKT\GameOfLifeAlt\obj\Debug\netcoreapp2.2\GameOfLifeAlt.dll
+H:\C#\BKT\GameOfLifeAlt\obj\Debug\netcoreapp2.2\GameOfLifeAlt.pdb

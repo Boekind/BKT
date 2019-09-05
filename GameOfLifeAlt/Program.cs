@@ -177,9 +177,9 @@ namespace GameOfLifeNeu
             Console.WriteLine("");
             ShowField(ref fieldCurrent);
 
-            //WriteCentered($"Lebende Zellen: {aliveCounter} | Tote Zellen: {heightArray * widthArray - aliveCounter}", heightArray + 5);
+            WriteCentered($"Lebende Zellen: {aliveCounter} | Tote Zellen: {heightArray * widthArray - aliveCounter}", heightArray + 5);
             //Maximal [W 80|H 53]:
-            WriteCentered($"Höhe: {heightConsole} {heightArray + 8} {Console.LargestWindowHeight} | Breite: {widthConsole} {(widthArray * 2) + 8} {Console.LargestWindowWidth}", heightArray + 5);
+            //WriteCentered($"Höhe: {heightConsole} {heightArray + 8} {Console.LargestWindowHeight} | Breite: {widthConsole} {(widthArray * 2) + 8} {Console.LargestWindowWidth}", heightArray + 5);
             Console.ForegroundColor = ConsoleColor.DarkGray;
             WriteCentered("Zum Neustarten 'R' drücken.", heightArray + 7);
             Console.ForegroundColor = ConsoleColor.White;

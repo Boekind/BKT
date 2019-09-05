@@ -6,5 +6,9 @@ namespace GameOfLifeOO
 {
     class Board
     {
+        public Board()
+        {
+
+        }
     }
 }

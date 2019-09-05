@@ -4,16 +4,16 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>250</y>
-      <w>210</w>
-      <h>120</h>
+      <x>40</x>
+      <y>300</y>
+      <w>520</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>Cell
 --
 +IsAlive: bool
 +IsAliveInNextGen: bool
-+Neighbours: int
++Neighbours: int (Nicht benötigt, durch Rückgabewert von GetLivingNeighbours)
 --
 +ChangeState(): bool
 
@@ -24,9 +24,9 @@
     <id>UMLClass</id>
     <coordinates>
       <x>650</x>
-      <y>30</y>
-      <w>360</w>
-      <h>200</h>
+      <y>40</y>
+      <w>410</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>Rules
 --
@@ -39,7 +39,7 @@
 +ChanceThatCellIsAlive: int
 
 --
--CheckStateInNextGen(Cell cell, int neighbours):void
++CheckStateInNextGen(Cell cell, int numberOfNeighbours):void
 
 </panel_attributes>
     <additional_attributes/>
@@ -47,20 +47,23 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>180</x>
-      <y>480</y>
+      <x>140</x>
+      <y>580</y>
       <w>380</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>Board
 --
-+Height: int
-+Width: int
-+boardArray: Cell[]
++Height: int (nicht benötigt, lokale Variable in StartGame)
++Width: int	(nicht benötigt, lokale Variable in StartGame)
++boardArray: Cell[][]
 +GenCounter: int
 --
-+ResetBoard():void
-+FillInitialCells(int InitialCells, ChanceThatCellIsAlive):void
++Board(int height, int width, Rules rules)
+-FillInitialCells(int ChanceThatCellIsAlive):void
++ChangeGen(): void
++GetLivingNeighbourCount(int x, int y): int
+
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -68,42 +71,47 @@
     <id>UMLClass</id>
     <coordinates>
       <x>710</x>
-      <y>380</y>
+      <y>390</y>
       <w>320</w>
       <h>280</h>
     </coordinates>
     <panel_attributes>GameOfLife
 --
-+board: Board
+-board: Board
 -rules: Rules
+-ui: UiController
 --
-+StartGame(int genCounter): void
-+ShowGame(int genCounter): void
--AskForAutorun(): bool
-+AskForWidth(): int
-+AskForHeight(): int
-( +AskForInitialCells(): int )
-+GoToNextGen(): void
-+ChangeGen(): void
++StartNewGame(): void
+-ShowGame(): void
+-GoToNextGen(): void
+-InitRules(): void
 
-+CreateField (Nicht benötigt, weil Kontruktor?)</panel_attributes>
+-CreateField (Nicht benötigt, weil Konstruktor)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>110</x>
-      <y>30</y>
-      <w>400</w>
-      <h>150</h>
+      <y>40</y>
+      <w>440</w>
+      <h>190</h>
     </coordinates>
-    <panel_attributes>UI
+    <panel_attributes>UiController
 --
 
 --
 _+WriteCentered(string text, int yIndex):void_
 _+JumpY(int x, int y):void_
-_+Title(int genCounter): void_
++ShowTitleScreen(int genCounter): void
++ShowBoard(Cell[][] boardArray): void
++AskForAutorun(): bool
++AskForWidth(): int
++AskForHeight(): int
+( +AskForInitialCells(): int )
+
+
+
 
 
 
@@ -113,40 +121,82 @@ _+Title(int genCounter): void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>360</y>
+      <x>130</x>
+      <y>390</y>
       <w>90</w>
-      <h>140</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..n
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>70.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>70.0;190.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>550</x>
-      <y>500</y>
-      <w>180</w>
-      <h>70</h>
+      <x>510</x>
+      <y>510</y>
+      <w>220</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>160.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>200.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>770</x>
-      <y>220</y>
+      <y>240</y>
       <w>70</w>
-      <h>180</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..n
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;160.0;10.0;10.0</additional_attributes>
+    <additional_attributes>50.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>220</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=1
+lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>740</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Program
+--
+-GameOfLife: GameOfLife
+--
+Main(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>730</x>
+      <y>660</y>
+      <w>80</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=1
+lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;60.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -8,7 +8,7 @@ namespace GameOfLifeNeu
 {
     class Program
     {
-        //Mit Array als Übergabeparameter arbeiten!
+        //Mit Array als Übergabeparameter arbeiten
         static int counterX = 0;
         static int counterY = 0;
 

@@ -609,10 +609,7 @@ namespace GameOfLifeNeu
             Console.Write(text);
         }
 
-        public static void JumpX(int x)
-        {
-            Console.CursorLeft = x;
-        }
+        
 
 
         //Methode, um die Konsolengröße festzulegen:

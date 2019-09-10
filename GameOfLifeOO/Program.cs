@@ -8,7 +8,9 @@ namespace GameOfLifeOO
 
         static void Main(string[] args)
         {
-           
+            GameOfLife gol = new GameOfLife();
+
+            gol.StartNewGame();
         }
     }
 }

@@ -27,6 +27,9 @@ namespace GameOfLifeOO
             }
         }
 
+
+        //Keine doppelten Schleifendurchläufe durch Methode mit Schleifendurchlauf, die Cell zurückgibt?
+
         public void ChangeGen(Rules rules)
         {
             for (int counterX = 0; counterX < boardArray.GetLength(1); counterX++)
@@ -36,11 +39,37 @@ namespace GameOfLifeOO
                     rules.CheckAndSetStateInNextGen(boardArray[counterX, counterY], GetLivingNeighbourCount(counterX, counterY));
                 }
             }
+
+            for (int counterX = 0; counterX < boardArray.GetLength(1); counterX++)
+            {
+                for (int counterY = 0; counterY < boardArray.GetLength(0); counterY++)
+                {
+                    boardArray[counterX, counterY].NextGen();
+                }
+            }
+
+
+        }
+
+        public bool IsNeighbourAlive(int x, int y)
+        {
+            return boardArray[x, y].IsAlive; //Keine zusätzliche if-Abfrage, ob Zelle IsAlive, benötigt, da IsAlive schon ein bool ist.
         }
 
         public int GetLivingNeighbourCount(int x, int y)
         {
-            return 5;
+            int neighbours = 0;
+
+            if(IsNeighbourAlive(x - 1, y - 1)) neighbours++;
+            if(IsNeighbourAlive(x, y - 1)) neighbours++;
+            if(IsNeighbourAlive(x + 1, y - 1)) neighbours++;
+            if(IsNeighbourAlive(x - 1, y)) neighbours++;
+            if(IsNeighbourAlive(x + 1, y)) neighbours++;
+            if(IsNeighbourAlive(x - 1, y + 1)) neighbours++;
+            if(IsNeighbourAlive(x, y + 1)) neighbours++;
+            if(IsNeighbourAlive(x + 1, y + 1)) neighbours++;
+
+            return neighbours;
         }
 
         public void AddGenCounter()

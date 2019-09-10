@@ -17,12 +17,14 @@ namespace GameOfLifeOO
         public void ChangeState()
         {
             this.IsAliveInNextGen = !this.IsAliveInNextGen;
-
         }
 
         public void NextGen()
         {
-            this.IsAlive = this.IsAliveInNextGen;
+            if (this.IsAlive != this.IsAliveInNextGen)
+            {
+                this.IsAlive = this.IsAliveInNextGen;
+            }
         }
 
 

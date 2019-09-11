@@ -48,8 +48,25 @@ namespace GameOfLifeOO
                 }
             }
 
+            //DoForEveryCell((int counterX, int counterY) => {
+            //    rules.CheckAndSetStateInNextGen(boardArray[counterX, counterY], GetLivingNeighbourCount(counterX, counterY));
+            //});
 
+            //DoForEveryCell((int counterX, int counterY) => {
+            //    boardArray[counterX, counterY].NextGen();
+            //});
         }
+
+        //private void DoForEveryCell(Action<int, int> todo)
+        //{
+        //    for (int counterX = 0; counterX < boardArray.GetLength(1); counterX++)
+        //    {
+        //        for (int counterY = 0; counterY < boardArray.GetLength(0); counterY++)
+        //        {
+        //            todo(counterX, counterY);
+        //        }
+        //    }
+        //}
 
         public bool IsNeighbourAlive(int x, int y)
         {

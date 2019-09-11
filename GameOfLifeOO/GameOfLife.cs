@@ -12,13 +12,11 @@ namespace GameOfLifeOO
 
         public void StartNewGame()
         {
-            bool autorun = false;
-            int height = 0;
-            int width = 0;
+            
             ui = new UiController();
-            InitRules(ref autorun, ref height, ref width);
-            rules = new Rules(autorun);
-            board = new Board(height, width, rules);
+            InitRules();
+            InitBoard();
+            
 
 
             //lokale Variable für Autorun (autorun)
@@ -45,13 +43,18 @@ namespace GameOfLifeOO
             //AddGenCounter
         }
 
-        private void InitRules(ref bool autorun, ref int height, ref int width)
+        private void InitRules()
         {
-            ui.ShowTitleScreen(-1);
-            autorun = ui.AskForAutorun();
-            height = ui.AskForHeight();
-            width = ui.AskForWidth();
-            
+            ui.ShowTitleScreen(); //Nimmt Defalutwert -1
+            bool autorun = ui.AskForAutorun();
+            rules = new Rules(autorun);
+        }
+
+        private void InitBoard()
+        {
+            int height = ui.AskForHeight();
+            int width = ui.AskForWidth();
+            board = new Board(height, width, rules);
         }
     }
 }

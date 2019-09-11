@@ -41,7 +41,7 @@ namespace GameOfLifeOO
             Console.SetWindowSize(w, h);
         }
 
-        public void ShowTitleScreen(int genCounter )
+        public void ShowTitleScreen(int genCounter = -1) //Defaultwert = -1
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Conway's Game of Life");
@@ -75,7 +75,7 @@ namespace GameOfLifeOO
 
             do
             {
-                var key = Console.ReadKey().Key;
+                var key = Console.ReadKey(true).Key;
                 autoError = false;
 
                 if (key == ConsoleKey.M)
@@ -103,7 +103,7 @@ namespace GameOfLifeOO
             do
             {
                 widthError = false;
-                Console.WriteLine("Breite:");
+                Console.Write("Breite: ");
                 try
                 {
                     boardWidth = int.Parse(Console.ReadLine());
@@ -139,7 +139,7 @@ namespace GameOfLifeOO
             do
             {
                 heightError = false;
-                Console.WriteLine("Höhe:");
+                Console.Write("Höhe: ");
                 try
                 {
                     boardHeight = int.Parse(Console.ReadLine());

@@ -27,6 +27,11 @@ namespace GameOfLifeOO
             }
         }
 
+        public void FillInitialIsAliveInNextGen() //Anderer Name?
+        {
+            this.IsAliveInNextGen = this.IsAlive;
+        }
+
 
     }
 }

@@ -17,15 +17,19 @@ namespace GameOfLifeOO
             Autorun = autorun;
         }
 
-        public void CheckAndSetStateInNextGen(Cell cell, int numberOfNeighbours)
+        public bool CheckIfStateChangesInNextGen(Cell cell, int numberOfNeighbours)
         {
-            if (cell.IsAlive && numberOfNeighbours < AliveMinNeighbours && numberOfNeighbours > AliveMaxNeighbours)
+            if (cell.IsAlive && (numberOfNeighbours < AliveMinNeighbours || numberOfNeighbours > AliveMaxNeighbours))
             {
-                cell.ChangeState();
+                return true;
             }
-            else if (!cell.IsAlive && numberOfNeighbours < DeadMinNeighbours && numberOfNeighbours > DeadMaxNeighbours)
+            else if (!cell.IsAlive && numberOfNeighbours >= DeadMinNeighbours && numberOfNeighbours <= DeadMaxNeighbours)
             {
-                cell.ChangeState();
+                return true;
+            }
+            else
+            {
+                return false;
             }
             
         }

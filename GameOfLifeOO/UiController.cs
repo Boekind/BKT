@@ -59,12 +59,18 @@ namespace GameOfLifeOO
 
         public void ShowBoard(Cell[,] board)
         {
-            for (int counterX = 0; counterX < board.GetLength(1); counterX++)
+            for (int counterX = 0; counterX < board.GetLength(0); counterX++)
             {
-                for (int counterY = 0; counterY < board.GetLength(0); counterY++)
+                for (int counterY = 0; counterY < board.GetLength(1); counterY++)
                 {
-                    Console.WriteLine(board[counterX, counterY].IsAlive ? ALIVE : DEAD);    //So möglich?                
+                    if (board[counterX,counterY].IsAliveInNextGen)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    Console.Write(board[counterX, counterY].IsAliveInNextGen ? $"{ALIVE} " : $"{DEAD} ");    //So möglich?  
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
+                Console.WriteLine("");
             }
         }
 

@@ -12,40 +12,72 @@ namespace GameOfLifeOO
 
         public void StartNewGame()
         {
-            
+            Console.Clear();
             ui = new UiController();
             InitRules();
             InitBoard();
-            
+            board.AddGenCounter();
 
-
-            //lokale Variable für Autorun (autorun)
-            //lokale Variable Höhe (x)
-            //lokale Variable Breite (y)
-            //InitRules für Höhe, Breite und Autorun
-            //Autorun in Rules-Kontruktor
-            //Rules, Höhe und Breite in Board-Kontruktor
-
-            //InitRules mit ref? Oder lieber die drei Asks einzeln und =? Oder Alternative?
+            while (true)
+            {
+                ShowGame();
+            }
         }
 
         private void ShowGame()
         {
+            Console.Clear();
+            GoToNextGen();
 
         }
 
         private void GoToNextGen()
         {
-            //if: Autorun true/false?
-            //Case: Key 
+            bool keyToNextGen = false;
+            board.SetStateInNextGen(rules);
+            ui.ShowTitleScreen(board.GenCounter);
+            ui.ShowBoard(board.boardArray);
 
+            while (!keyToNextGen)
+            {
+                if (!rules.Autorun)
+                {
+                    switch (Console.ReadKey(true).Key)
+                    {
+                        case ConsoleKey.Spacebar:
+                        case ConsoleKey.Enter:
+                            board.ChangeGen();
+                            keyToNextGen = true;
+                            break;
+                        case ConsoleKey.R:
+                            StartNewGame();
+                            break;
+                        default:
+                            //Nichts passiert.
+                            break;
+                    }
+                }
+                else
+                {
+                    board.ChangeGen();
+                    keyToNextGen = true;
+                    System.Threading.Thread.Sleep(200); //Alle x ms wird das Array neu generiert
+                    if (Console.KeyAvailable)
+                    {
+                        if (Console.ReadKey(true).Key == ConsoleKey.R)
+                        {
+                            StartNewGame();
+                        }
+                    }
+                }
+            }
 
-            //AddGenCounter
+        
         }
 
         private void InitRules()
         {
-            ui.ShowTitleScreen(); //Nimmt Defalutwert -1
+            ui.ShowTitleScreen(); //Nimmt Defaultwert -1
             bool autorun = ui.AskForAutorun();
             rules = new Rules(autorun);
         }

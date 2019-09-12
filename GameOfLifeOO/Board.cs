@@ -7,22 +7,25 @@ namespace GameOfLifeOO
     class Board
     {
         public int GenCounter { get; private set; } = -1;
-        Cell[,] boardArray;
+        public Cell[,] boardArray;
         public Board(int height, int width, Rules rules)
         {
             boardArray = new Cell[height, width];
-
+            FillInitialCells(50);
         }
 
         public void FillInitialCells(int ChanceThatCellsAlive) //z.B. 40 für 40%ige Wahrscheinlichkeit, dass die Zelle lebt -> Dichte von 40%
         {
             Random rng = new Random();
             
-            for (int counterX = 0; counterX < boardArray.GetLength(1); counterX++)
+            for (int counterX = 0; counterX < boardArray.GetLength(0); counterX++)
             {
-                for (int counterY = 0; counterY < boardArray.GetLength(0); counterY++)
+                for (int counterY = 0; counterY < boardArray.GetLength(1); counterY++)
                 {
+                    //int x = boardArray.GetLength(0);
                     boardArray[counterX, counterY] = new Cell(rng.Next(100) <= ChanceThatCellsAlive);
+                    boardArray[counterX, counterY].FillInitialIsAliveInNextGen();
+                    
                 }
             }
         }
@@ -30,21 +33,16 @@ namespace GameOfLifeOO
 
         //Keine doppelten Schleifendurchläufe durch Methode mit Schleifendurchlauf, die Cell zurückgibt?
 
-        public void ChangeGen(Rules rules)
+        public void SetStateInNextGen(Rules rules) //ursprünglich in ChangeGen
         {
-            for (int counterX = 0; counterX < boardArray.GetLength(1); counterX++)
+            for (int counterX = 0; counterX < boardArray.GetLength(0); counterX++)
             {
-                for (int counterY = 0; counterY < boardArray.GetLength(0); counterY++)
+                for (int counterY = 0; counterY < boardArray.GetLength(1); counterY++)
                 {
-                    rules.CheckAndSetStateInNextGen(boardArray[counterX, counterY], GetLivingNeighbourCount(counterX, counterY));
-                }
-            }
-
-            for (int counterX = 0; counterX < boardArray.GetLength(1); counterX++)
-            {
-                for (int counterY = 0; counterY < boardArray.GetLength(0); counterY++)
-                {
-                    boardArray[counterX, counterY].NextGen();
+                    if(rules.CheckIfStateChangesInNextGen(boardArray[counterX, counterY], GetLivingNeighbourCount(counterX, counterY)))
+                    {
+                        boardArray[counterX, counterY].ChangeState();
+                    }
                 }
             }
 
@@ -67,13 +65,33 @@ namespace GameOfLifeOO
         //        }
         //    }
         //}
-
-        public bool IsNeighbourAlive(int x, int y)
+        public void ChangeGen()
         {
-            return boardArray[x, y].IsAlive; //Keine zusätzliche if-Abfrage, ob Zelle IsAlive, benötigt, da IsAlive schon ein bool ist.
+            for (int counterX = 0; counterX < boardArray.GetLength(0); counterX++)
+            {
+                for (int counterY = 0; counterY < boardArray.GetLength(1); counterY++)
+                {
+                    boardArray[counterX, counterY].NextGen();
+                }
+            }
+            AddGenCounter();
         }
 
-        public int GetLivingNeighbourCount(int x, int y)
+
+        private bool IsNeighbourAlive(int x, int y)
+        {
+            if (x >= 0 && x < boardArray.GetLength(0) && y >= 0 && y < boardArray.GetLength(1))
+            {
+                return boardArray[x, y].IsAlive; //Keine zusätzliche if-Abfrage, ob Zelle IsAlive benötigt, da IsAlive schon ein bool ist.
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        private int GetLivingNeighbourCount(int x, int y)
         {
             int neighbours = 0;
 

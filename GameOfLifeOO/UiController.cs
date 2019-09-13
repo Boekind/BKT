@@ -7,7 +7,7 @@ namespace GameOfLifeOO
     class UiController
     {
         private const string ALIVE = "o";
-        private const string DEAD = "x";
+        private const string DEAD = " ";
 
         public static void JumpY(int x, int y)
         {

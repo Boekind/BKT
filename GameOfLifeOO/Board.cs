@@ -11,7 +11,7 @@ namespace GameOfLifeOO
         public Board(int height, int width, Rules rules)
         {
             boardArray = new Cell[height, width];
-            FillInitialCells(50);
+            FillInitialCells(60);
         }
 
         public void FillInitialCells(int ChanceThatCellsAlive) //z.B. 40 für 40%ige Wahrscheinlichkeit, dass die Zelle lebt -> Dichte von 40%
@@ -65,6 +65,7 @@ namespace GameOfLifeOO
         //        }
         //    }
         //}
+
         public void ChangeGen()
         {
             for (int counterX = 0; counterX < boardArray.GetLength(0); counterX++)

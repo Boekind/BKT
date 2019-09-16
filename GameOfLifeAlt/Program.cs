@@ -360,7 +360,7 @@ namespace GameOfLifeNeu
             while (counterX < heightArray)
             {
 
-                for (int counterCentered = ((((widthConsole)) - ((widthArray * 2)) + 1) / 2); counterCentered > 0; counterCentered--)
+                for (int counterCentered = ((  (widthConsole) - (widthArray * 2) + 1) / 2); counterCentered > 0; counterCentered--)
                 {
                     Console.Write(" ");
                 }

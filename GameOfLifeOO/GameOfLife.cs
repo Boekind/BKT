@@ -14,10 +14,12 @@ namespace GameOfLifeOO
         {
             Console.Clear();
             ui = new UiController();
+            ui.Resize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //ui.LoadGame();
             InitRules();
             InitBoard();
             board.AddGenCounter();
-
+            Console.Clear();
             while (true)
             {
                 ShowGame();
@@ -26,7 +28,7 @@ namespace GameOfLifeOO
 
         private void ShowGame()
         {
-            Console.Clear();
+            //Console.Clear();
             GoToNextGen();
 
         }
@@ -36,7 +38,8 @@ namespace GameOfLifeOO
             bool keyToNextGen = false;
             board.SetStateInNextGen(rules);
             ui.ShowTitleScreen(board.GenCounter);
-            ui.ShowBoard(board.boardArray);
+            ui.ShowBoard(board.boardArray, board.GenCounter);
+            //ui.ShowBorder();
 
             while (!keyToNextGen)
             {
@@ -61,7 +64,7 @@ namespace GameOfLifeOO
                 {
                     board.ChangeGen();
                     keyToNextGen = true;
-                    System.Threading.Thread.Sleep(200); //Alle x ms wird das Array neu generiert
+                    System.Threading.Thread.Sleep(50); //Alle x ms wird das Array neu generiert
                     if (Console.KeyAvailable)
                     {
                         if (Console.ReadKey(true).Key == ConsoleKey.R)
@@ -78,6 +81,7 @@ namespace GameOfLifeOO
         private void InitRules()
         {
             ui.ShowTitleScreen(); //Nimmt Defaultwert -1
+            System.Threading.Thread.Sleep(500);
             bool autorun = ui.AskForAutorun();
             rules = new Rules(autorun);
         }

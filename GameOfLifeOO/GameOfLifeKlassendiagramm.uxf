@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>63</x>
-      <y>261</y>
+      <x>180</x>
+      <y>360</y>
       <w>468</w>
       <h>117</h>
     </coordinates>
@@ -25,8 +25,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
-      <y>27</y>
+      <x>729</x>
+      <y>126</y>
       <w>423</w>
       <h>189</h>
     </coordinates>
@@ -49,8 +49,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>153</x>
-      <y>513</y>
+      <x>270</x>
+      <y>612</y>
       <w>342</w>
       <h>171</h>
     </coordinates>
@@ -73,10 +73,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>666</x>
-      <y>342</y>
+      <x>810</x>
+      <y>513</y>
       <w>288</w>
-      <h>252</h>
+      <h>162</h>
     </coordinates>
     <panel_attributes>GameOfLife
 --
@@ -94,8 +94,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
-      <y>27</y>
+      <x>243</x>
+      <y>126</y>
       <w>396</w>
       <h>171</h>
     </coordinates>
@@ -133,8 +133,8 @@ _+Resize(int w, int h): void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>369</y>
+      <x>441</x>
+      <y>468</y>
       <w>45</w>
       <h>162</h>
     </coordinates>
@@ -146,47 +146,47 @@ lt=&lt;&lt;&lt;&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
-      <y>549</y>
-      <w>198</w>
+      <x>603</x>
+      <y>648</y>
+      <w>225</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>207</y>
+      <x>900</x>
+      <y>306</y>
       <w>45</w>
-      <h>153</h>
+      <h>225</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..n
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>189</y>
-      <w>180</w>
-      <h>180</h>
+      <x>630</x>
+      <y>288</y>
+      <w>198</w>
+      <h>243</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>180.0;180.0;10.0;10.0</additional_attributes>
+    <additional_attributes>200.0;250.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>756</x>
-      <y>684</y>
+      <x>873</x>
+      <y>783</y>
       <w>189</w>
       <h>108</h>
     </coordinates>
@@ -201,14 +201,14 @@ Main(): void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>873</x>
-      <y>585</y>
+      <x>990</x>
+      <y>666</y>
       <w>36</w>
-      <h>117</h>
+      <h>135</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

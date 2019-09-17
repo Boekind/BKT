@@ -7,10 +7,11 @@ namespace GameOfLifeOO
     class Rules
     {
         public bool Autorun { get; set; }
-        public int AliveMinNeighbours { get; private set; } = 2;
-        public int AliveMaxNeighbours { get; private set; } = 3;
-        public int DeadMinNeighbours { get; private set; } = 3;
-        public int DeadMaxNeighbours { get; private set; } = 3;
+        private int AliveMinNeighbours { get; set; } = 2;
+        private int AliveMaxNeighbours { get; set; } = 3;
+        private int DeadMinNeighbours { get; set; } = 3;
+        private int DeadMaxNeighbours { get; set; } = 3;
+        public int ChanceThatCellIsAlive { get; set; } = 50;
 
         public Rules(bool autorun)
         {

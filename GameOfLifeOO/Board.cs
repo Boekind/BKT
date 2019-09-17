@@ -11,10 +11,10 @@ namespace GameOfLifeOO
         public Board(int height, int width, Rules rules)
         {
             boardArray = new Cell[width, height];
-            FillInitialCells(60);
+            FillInitialCells(rules.ChanceThatCellIsAlive);
         }
 
-        public void FillInitialCells(int ChanceThatCellsAlive) //z.B. 40 für 40%ige Wahrscheinlichkeit, dass die Zelle lebt -> Dichte von 40%
+        public void FillInitialCells(int ChanceThatCellsAlive) //z.B. für X% Wahrscheinlichkeit, dass die Zelle lebt -> Dichte von X
         {
             Random rng = new Random();
             

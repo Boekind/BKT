@@ -12,16 +12,9 @@ namespace GameOfLifeOO
 
         public void StartNewGame()
         {
-            Console.CursorVisible = false;
+            InitGoL();
             Console.Clear();
-            ui = new UiController();
-            ui.Resize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-            ui.LoadGame();
-            InitRules();
-            InitBoard();
-            board.AddGenCounter();
-            Console.Clear();
-            ui.ShowBorder(board.boardArray);
+            //ui.ShowBorder(board.boardArray);
             while (true)
             {
                 ShowGame();
@@ -39,7 +32,7 @@ namespace GameOfLifeOO
             board.SetStateInNextGen(rules);
             ui.ShowTitleScreen(board.GenCounter);
             ui.ShowBoard(board.boardArray, board.GenCounter);
-            //ui.ShowBorder();
+            
 
             while (!keyToNextGen)
             {
@@ -64,7 +57,7 @@ namespace GameOfLifeOO
                 {
                     board.ChangeGen();
                     keyToNextGen = true;
-                    System.Threading.Thread.Sleep(50); //Alle x ms wird das Array neu generiert
+                    System.Threading.Thread.Sleep(60); //Alle x ms wird das Array neu generiert
                     if (Console.KeyAvailable)
                     {
                         if (Console.ReadKey(true).Key == ConsoleKey.R)
@@ -91,6 +84,17 @@ namespace GameOfLifeOO
             int height = ui.AskForHeight();
             int width = ui.AskForWidth();
             board = new Board(height, width, rules);
+        }
+
+        private void InitGoL()
+        {
+            Console.CursorVisible = false;
+            Console.Clear();
+            ui = new UiController();
+            ui.Resize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            InitRules();
+            InitBoard();
+            board.AddGenCounter();
         }
     }
 }

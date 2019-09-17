@@ -96,7 +96,7 @@ namespace GameOfLifeOO
                         else if (!board[x, y].IsAliveInNextGen)
                         {
                             Jump((x * 2) + (((Console.WindowWidth - (board.GetLength(0) * 2)) / 2)+1), y + FirstLine + 6);
-                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.BackgroundColor = ConsoleColor.Black;
                             Console.WriteLine($"{DEAD}");
                             Console.BackgroundColor = ConsoleColor.Black;
 
@@ -122,7 +122,7 @@ namespace GameOfLifeOO
                             }
                             else
                             {
-                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.BackgroundColor = ConsoleColor.Black;
                                 Console.WriteLine($"{DEAD}");
                                 Console.BackgroundColor = ConsoleColor.Black;
                             }
@@ -248,40 +248,33 @@ namespace GameOfLifeOO
             Console.Write("\r" + new string(' ', Console.BufferWidth - 1) + "\r");
         }
 
-        public void LoadGame()
-        {
-            for (int i = 10; i <= 100; i += 10)
-            {
-                WriteCentered($"Spiel wird geladen...{i}%", FirstLine + 1);
-                System.Threading.Thread.Sleep(250);
-            }
-            ClearLine(FirstLine + 1);
-
-        }
-
         public void ShowBorder(Cell[,] board)
         {
-            //int oben = FirstLine + 5;
-            //int unten = FirstLine + 5 + board.GetLength(0);
-            //int links = (((Console.WindowWidth - (board.GetLength(0) * 2)) / 2));
-            //int rechts = ((Console.WindowWidth - (board.GetLength(0) * 2)) / 2) + board.GetLength(1);
-            ////╔ ═ ╗ ║ ╚ ╝
-            //WriteBorder(links, oben, "╔");
-            //WriteBorder(rechts, oben, "╗");
-            //WriteBorder(links, unten, "╚");
-            //WriteBorder(rechts, unten, "╝");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            //╔ ═ ╗ ║ ╚ ╝
+            int oben = FirstLine + 6;
+            int unten = FirstLine + 6 + board.GetLength(1);
+            int links = (((Console.WindowWidth - (board.GetLength(1) * 2)) / 2));
+            int rechts = (((Console.WindowWidth - (board.GetLength(1) * 2)) / 2) + board.GetLength(0)*2)+1 ;
 
-            //for (int i = links + 1; i < rechts; i++)
-            //{
-            //    WriteBorder(i, oben, "═");
-            //    WriteBorder(i, unten, "═");
-            //}
+            WriteBorder(links, oben, "╔");
+            WriteBorder(rechts , oben, "╗");
+            WriteBorder(links, unten, "╚");
+            WriteBorder(rechts, unten, "╝");
 
-            //for (int i = oben + 1; i < unten; i++)
-            //{
-            //    WriteBorder(links, i, "║");
-            //    WriteBorder(rechts, i, "║");
-            //}
+            for (int i = links + 1; i < rechts; i++)
+            {
+                WriteBorder(i, oben, "═");
+                WriteBorder(i, unten, "═");
+            }
+
+            for (int i = oben + 1; i < unten; i++)
+            {
+                WriteBorder(links, i, "║");
+                WriteBorder(rechts, i, "║");
+            }
+
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         private void WriteBorder(int x, int y, string text)

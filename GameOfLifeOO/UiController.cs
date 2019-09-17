@@ -77,30 +77,60 @@ namespace GameOfLifeOO
 
         public void ShowBoard(Cell[,] board, int genCounter)
         {
-            
-            for (int y = 0; y < board.GetLength(1); y++)
-            {
-                for (int x = 0; x < board.GetLength(0) ; x++)
-                {
-                    Jump((x*2) + (((Console.WindowWidth - (board.GetLength(0) * 2) + 1) / 2)), y + FirstLine + 6);
-                    
-                    if (board[x, y].IsAliveInNextGen && board[x, y].IsAliveInNextGen != board[x, y].IsAlive) 
-                    {
-                        Jump((x * 2) + (((Console.WindowWidth - (board.GetLength(0) * 2) + 1) / 2)), y + FirstLine + 6);
-                        Console.BackgroundColor = ConsoleColor.DarkGreen;
-                        Console.WriteLine($"{ALIVE}");
-                        Console.BackgroundColor = ConsoleColor.Black;
 
-                    }
-                    else if (!board[x, y].IsAliveInNextGen && board[x, y].IsAliveInNextGen != board[x, y].IsAlive)
+            if (genCounter == 0)
+            {
+                for (int x = 0; x < board.GetLength(0); x++)
+                {
+                    for (int y = 1; y < board.GetLength(1); y++)
                     {
-                        Jump((x * 2) + (((Console.WindowWidth - (board.GetLength(0) * 2) + 1) / 2)), y + FirstLine + 6);
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        Console.WriteLine($"{DEAD}");
-                        
+
+                        if (board[x, y].IsAliveInNextGen)
+                        {
+                            Jump((x * 2) + (((Console.WindowWidth - (board.GetLength(0) * 2)) / 2) + 1), y + FirstLine + 6);
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine($"{ALIVE}");
+                            Console.BackgroundColor = ConsoleColor.Black;
+
+                        }
+                        else if (!board[x, y].IsAliveInNextGen)
+                        {
+                            Jump((x * 2) + (((Console.WindowWidth - (board.GetLength(0) * 2)) / 2)+1), y + FirstLine + 6);
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"{DEAD}");
+                            Console.BackgroundColor = ConsoleColor.Black;
+
+                        }
                     }
                 }
             }
+            else
+            {
+                for (int x = 0; x < board.GetLength(0); x++)
+                {
+                    for (int y = 1; y < board.GetLength(1); y++)
+                    {
+                        if (board[x, y].IsAliveInNextGen != board[x, y].IsAlive)
+                        {
+                            Jump((x * 2) + (((Console.WindowWidth - (board.GetLength(0) * 2)) / 2) +1), y + FirstLine + 6);
+
+                            if (board[x, y].IsAliveInNextGen)
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                Console.WriteLine($"{ALIVE}");
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+                            else
+                            {
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"{DEAD}");
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
 
 
@@ -145,9 +175,9 @@ namespace GameOfLifeOO
                 {
                     boardHeight = int.Parse(Console.ReadLine());
 
-                    if ((boardHeight + 8 > Console.LargestWindowHeight))
+                    if ((boardHeight + 13 > Console.LargestWindowHeight))
                     {
-                        ErrorMessage($"Zahl zu groß. Bitte wähle eine Zahl bis {Console.LargestWindowHeight - 8}.",FirstLine + 5);
+                        ErrorMessage($"Zahl zu groß. Bitte wähle eine Zahl bis {Console.LargestWindowHeight - 13}.",FirstLine + 5);
                         heightError = true;
                     }
                     else if (boardHeight <= 0)
@@ -180,9 +210,9 @@ namespace GameOfLifeOO
                 {
                     boardWidth = int.Parse(Console.ReadLine());
 
-                    if (((boardWidth * 2) + 8 > Console.LargestWindowWidth))
+                    if (((boardWidth * 2) + 13 > Console.LargestWindowWidth))
                     {
-                        ErrorMessage($"Zahl zu groß. Bitte wähle eine Zahl bis {(Console.LargestWindowWidth - 8) / 2}.", FirstLine +7);
+                        ErrorMessage($"Zahl zu groß. Bitte wähle eine Zahl bis {(Console.LargestWindowWidth - 13) / 2}.", FirstLine +7);
                         widthError = true;
                     }
                     else if (boardWidth <= 0)
@@ -212,46 +242,46 @@ namespace GameOfLifeOO
             ClearLine(y);
         }
 
-        public void ClearLine(int y)
+        private void ClearLine(int y)
         {
             Jump(0, y);
             Console.Write("\r" + new string(' ', Console.BufferWidth - 1) + "\r");
         }
 
-        //public void LoadGame()
-        //{
-        //    for (int i = 10; i <= 100; i += 10)
-        //    {
-        //        WriteCentered($"Spiel wird geladen...{i}%", FirstLine + 1);
-        //        System.Threading.Thread.Sleep(250);
-        //    }
-        //    ClearLine(FirstLine+1);
-            
-        //}
-
-        public void ShowBorder()
+        public void LoadGame()
         {
-            int oben = 5;
-            int unten = 10;
-            int links = 5;
-            int rechts = 10;
-            //╔ ═ ╗ ║ ╚ ╝
-            WriteBorder(links, oben, "╔");
-            WriteBorder(rechts * 2, oben, "╗");
-            WriteBorder(links, unten, "╚");
-            WriteBorder(rechts * 2, unten, "╝");
-
-            for (int i = links+1; i < rechts*2; i++)
+            for (int i = 10; i <= 100; i += 10)
             {
-                WriteBorder(i, oben, "═");
-                WriteBorder(i, unten, "═");
+                WriteCentered($"Spiel wird geladen...{i}%", FirstLine + 1);
+                System.Threading.Thread.Sleep(250);
             }
+            ClearLine(FirstLine + 1);
 
-            for (int i = oben+1; i < unten; i++)
-            {
-                WriteBorder(links, i, "║");
-                WriteBorder(rechts * 2, i, "║");
-            }
+        }
+
+        public void ShowBorder(Cell[,] board)
+        {
+            //int oben = FirstLine + 5;
+            //int unten = FirstLine + 5 + board.GetLength(0);
+            //int links = (((Console.WindowWidth - (board.GetLength(0) * 2)) / 2));
+            //int rechts = ((Console.WindowWidth - (board.GetLength(0) * 2)) / 2) + board.GetLength(1);
+            ////╔ ═ ╗ ║ ╚ ╝
+            //WriteBorder(links, oben, "╔");
+            //WriteBorder(rechts, oben, "╗");
+            //WriteBorder(links, unten, "╚");
+            //WriteBorder(rechts, unten, "╝");
+
+            //for (int i = links + 1; i < rechts; i++)
+            //{
+            //    WriteBorder(i, oben, "═");
+            //    WriteBorder(i, unten, "═");
+            //}
+
+            //for (int i = oben + 1; i < unten; i++)
+            //{
+            //    WriteBorder(links, i, "║");
+            //    WriteBorder(rechts, i, "║");
+            //}
         }
 
         private void WriteBorder(int x, int y, string text)

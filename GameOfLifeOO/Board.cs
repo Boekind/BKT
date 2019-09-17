@@ -10,7 +10,7 @@ namespace GameOfLifeOO
         public Cell[,] boardArray;
         public Board(int height, int width, Rules rules)
         {
-            boardArray = new Cell[height, width];
+            boardArray = new Cell[width, height];
             FillInitialCells(60);
         }
 

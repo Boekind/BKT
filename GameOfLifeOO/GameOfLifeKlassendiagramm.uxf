@@ -4,16 +4,17 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>270</y>
+      <x>63</x>
+      <y>261</y>
       <w>468</w>
-      <h>108</h>
+      <h>117</h>
     </coordinates>
     <panel_attributes>Cell
 --
 +IsAlive: bool
 +IsAliveInNextGen: bool
 --
++Cell(bool initialState)
 +ChangeState(): void
 +NextGen(): void
 +FillInitialIsAliveInNextGen: void
@@ -24,8 +25,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>621</x>
-      <y>36</y>
+      <x>612</x>
+      <y>27</y>
       <w>423</w>
       <h>189</h>
     </coordinates>
@@ -48,8 +49,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>162</x>
-      <y>522</y>
+      <x>153</x>
+      <y>513</y>
       <w>342</w>
       <h>171</h>
     </coordinates>
@@ -72,8 +73,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>675</x>
-      <y>351</y>
+      <x>666</x>
+      <y>342</y>
       <w>288</w>
       <h>252</h>
     </coordinates>
@@ -93,8 +94,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>135</x>
-      <y>36</y>
+      <x>126</x>
+      <y>27</y>
       <w>396</w>
       <h>171</h>
     </coordinates>
@@ -102,16 +103,23 @@
 --
 -ALIVE: string {readOnly} 
 -DEAD: string {readOnly}
++FirstLine: int
 --
-_+JumpY(int x, int y): void_
+_+Jump(int x, int y): void_
 _+WriteCentered(string text, int yIndex): void_
 _+Resize(int w, int h): void_
-+ShowTitleScreen(int genCounter): void     Defaultwert = -1 ?
++ShowTitleScreen(int genCounter): void    
 +ShowBoard(Cell[][] board): void
 +AskForAutorun(): bool
 +AskForWidth(): int
 +AskForHeight(): int
-+ErrorMessage(string text): void
++ErrorMessage(string text, int y): void
+-ClearLine(int y): void
++LoadGame(): void
+
+
++ShowBorder(Cell[][] board): void
+-WriteBorder(int x, int y, string text): void
 
 
 
@@ -125,21 +133,21 @@ _+Resize(int w, int h): void_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>207</x>
+      <x>198</x>
       <y>369</y>
       <w>45</w>
-      <h>171</h>
+      <h>162</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=1..n
 lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>558</y>
+      <x>486</x>
+      <y>549</y>
       <w>198</w>
       <h>36</h>
     </coordinates>
@@ -151,8 +159,8 @@ lt=&lt;&lt;&lt;&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>765</x>
-      <y>216</y>
+      <x>756</x>
+      <y>207</y>
       <w>45</w>
       <h>153</h>
     </coordinates>
@@ -164,8 +172,8 @@ lt=&lt;&lt;&lt;&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>513</x>
-      <y>198</y>
+      <x>504</x>
+      <y>189</y>
       <w>180</w>
       <h>180</h>
     </coordinates>
@@ -177,8 +185,8 @@ lt=&lt;&lt;&lt;&lt;-</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>765</x>
-      <y>693</y>
+      <x>756</x>
+      <y>684</y>
       <w>189</w>
       <h>108</h>
     </coordinates>
@@ -193,8 +201,8 @@ Main(): void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>594</y>
+      <x>873</x>
+      <y>585</y>
       <w>36</w>
       <h>117</h>
     </coordinates>

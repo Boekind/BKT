@@ -12,14 +12,16 @@ namespace GameOfLifeOO
 
         public void StartNewGame()
         {
+            Console.CursorVisible = false;
             Console.Clear();
             ui = new UiController();
             ui.Resize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-            //ui.LoadGame();
+            ui.LoadGame();
             InitRules();
             InitBoard();
             board.AddGenCounter();
             Console.Clear();
+            ui.ShowBorder(board.boardArray);
             while (true)
             {
                 ShowGame();
@@ -28,9 +30,7 @@ namespace GameOfLifeOO
 
         private void ShowGame()
         {
-            //Console.Clear();
             GoToNextGen();
-
         }
 
         private void GoToNextGen()

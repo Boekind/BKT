@@ -8,7 +8,7 @@ namespace Taschenrechner
 {
     class Calculator
     {
-        public const int MAX_LENGTH = 15; 
+        public const int MAX_LENGTH = 13; 
         public string AddNumber(string result, string number)
         {
 
@@ -29,9 +29,22 @@ namespace Taschenrechner
             return result;
         }
 
-        //public string AddComma(string result)
-        //{
+        public string AddComma(string result)
+        {
+            if (!result.Contains(","))
+            {
+                result += ",";
+                return result;
+            }
+            else
+            {
+                return result;
+            }
+        }
 
-        //}
+        public string Calculate(string result, string op) //Grundrechenarten
+        {
+            return result;
+        }
     }
 }

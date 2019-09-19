@@ -95,10 +95,6 @@ namespace Taschenrechner
 
         private void ButtonComma_Click(object sender, EventArgs e)
         {
-            if (!labelResult.Text.Contains(","))
-            {
-                labelResult.Text += ",";
-            }
             
 
         }
@@ -122,18 +118,18 @@ namespace Taschenrechner
         {
             switch (e.KeyCode)
             {
-                case Keys.D0: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D0: labelResult.Text = calc.AddNumber(labelResult.Text, "0"); break;
                 case Keys.D1: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D2: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D3: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D4: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D5: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D6: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D7: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D8: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
-                case Keys.D9: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D2: labelResult.Text = calc.AddNumber(labelResult.Text, "2"); break;
+                case Keys.D3: labelResult.Text = calc.AddNumber(labelResult.Text, "3"); break;
+                case Keys.D4: labelResult.Text = calc.AddNumber(labelResult.Text, "4"); break;
+                case Keys.D5: labelResult.Text = calc.AddNumber(labelResult.Text, "5"); break;
+                case Keys.D6: labelResult.Text = calc.AddNumber(labelResult.Text, "6"); break;
+                case Keys.D7: labelResult.Text = calc.AddNumber(labelResult.Text, "7"); break;
+                case Keys.D8: labelResult.Text = calc.AddNumber(labelResult.Text, "8"); break;
+                case Keys.D9: labelResult.Text = calc.AddNumber(labelResult.Text, "9"); break;
                 
-                case Keys.Oemcomma: labelResult.Text = calc.AddNumber(labelResult.Text, ","); break;
+                case Keys.Oemcomma: labelResult.Text = calc.AddComma(labelResult.Text); break;
 
 
             }

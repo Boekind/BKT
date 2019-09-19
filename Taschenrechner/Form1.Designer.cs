@@ -99,10 +99,10 @@
             this.labelResult.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelResult.AutoEllipsis = true;
             this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResult.Location = new System.Drawing.Point(25, 44);
+            this.labelResult.Location = new System.Drawing.Point(11, 44);
             this.labelResult.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(285, 45);
+            this.labelResult.Size = new System.Drawing.Size(299, 45);
             this.labelResult.TabIndex = 34;
             this.labelResult.Text = "0";
             this.labelResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -511,6 +511,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyboardInput);

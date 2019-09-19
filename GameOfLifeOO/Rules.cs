@@ -11,7 +11,7 @@ namespace GameOfLifeOO
         private int AliveMaxNeighbours { get; set; } = 3;
         private int DeadMinNeighbours { get; set; } = 3;
         private int DeadMaxNeighbours { get; set; } = 3;
-        public int ChanceThatCellIsAlive { get; set; } = 50;
+        public int ChanceThatCellIsAlive { get; set; } = 80;
 
         public Rules(bool autorun)
         {

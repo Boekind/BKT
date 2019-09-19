@@ -12,6 +12,7 @@ namespace GameOfLifeOO
         public Cell (bool initialState)
         {
             IsAlive = initialState;
+            IsAliveInNextGen = initialState;
         }
 
         public void ChangeState()

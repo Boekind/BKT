@@ -8,9 +8,30 @@ namespace Taschenrechner
 {
     class Calculator
     {
-        public void AddNumber(double number)
+        public const int MAX_LENGTH = 15; 
+        public string AddNumber(string result, string number)
         {
-            //Abfrage, ob 0
+
+            if (result.Length >= MAX_LENGTH)
+            {
+                return result;
+            }
+
+            if (result == "0")
+            {
+                 result = number;
+            }
+            else
+            {
+                result += number;
+            }
+
+            return result;
         }
+
+        //public string AddComma(string result)
+        //{
+
+        //}
     }
 }

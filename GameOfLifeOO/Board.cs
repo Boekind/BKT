@@ -24,7 +24,7 @@ namespace GameOfLifeOO
                 {
                     //int x = boardArray.GetLength(0);
                     boardArray[counterX, counterY] = new Cell(rng.Next(100) <= ChanceThatCellsAlive);
-                    boardArray[counterX, counterY].FillInitialIsAliveInNextGen();
+                    //boardArray[counterX, counterY].FillInitialIsAliveInNextGen();
                     
                 }
             }
@@ -35,6 +35,7 @@ namespace GameOfLifeOO
 
         public void SetStateInNextGen(Rules rules) //ursprünglich in ChangeGen
         {
+
             for (int counterX = 0; counterX < boardArray.GetLength(0); counterX++)
             {
                 for (int counterY = 0; counterY < boardArray.GetLength(1); counterY++)

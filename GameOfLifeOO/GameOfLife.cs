@@ -29,7 +29,10 @@ namespace GameOfLifeOO
         private void GoToNextGen()
         {
             bool keyToNextGen = false;
-            board.SetStateInNextGen(rules);
+            if (board.GenCounter > 0)
+            {
+                board.SetStateInNextGen(rules);
+            }
             ui.ShowTitleScreen(board.GenCounter);
             ui.ShowBoard(board.boardArray, board.GenCounter);
             

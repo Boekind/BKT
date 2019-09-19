@@ -12,6 +12,7 @@ namespace Taschenrechner
 {
     public partial class Form1 : Form
     {
+        Calculator calc = new Calculator();
         public Form1()
         {
             InitializeComponent();
@@ -24,52 +25,52 @@ namespace Taschenrechner
 
         private void Button0_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "0";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "0");
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "1";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "1");
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "2";
+           labelResult.Text = calc.AddNumber(labelResult.Text, "2");
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "3";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "3");
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "4";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "4");
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "5";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "5");
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "6";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "6");
         }
 
         private void Button7_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "7";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "7");
         }
 
         private void Button8_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "8";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "8");
         }
 
         private void Button9_Click(object sender, EventArgs e)
         {
-            labelResult.Text += "9";
+            labelResult.Text = calc.AddNumber(labelResult.Text, "9");
         }
 
         private void ButtonAddition_Click(object sender, EventArgs e)
@@ -105,6 +106,37 @@ namespace Taschenrechner
         private void ButtonC_Click(object sender, EventArgs e)
         {
             labelResult.Text = "0";
+        }
+
+        private void Button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelResult_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void KeyboardInput(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.D0: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D1: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D2: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D3: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D4: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D5: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D6: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D7: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D8: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                case Keys.D9: labelResult.Text = calc.AddNumber(labelResult.Text, "1"); break;
+                
+                case Keys.Oemcomma: labelResult.Text = calc.AddNumber(labelResult.Text, ","); break;
+
+
+            }
         }
     }
 }

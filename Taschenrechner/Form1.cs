@@ -12,6 +12,7 @@ namespace Taschenrechner
 {
     public partial class Form1 : Form
     {
+        public string operand { get; set; }
         Calculator calc = new Calculator();
         public Form1()
         {
@@ -75,7 +76,7 @@ namespace Taschenrechner
 
         private void ButtonAddition_Click(object sender, EventArgs e)
         {
-            
+            calc.Calculate(labelResult.Text, "+",operand);
         }
 
         private void ButtonSubstraction_Click(object sender, EventArgs e)
@@ -95,7 +96,7 @@ namespace Taschenrechner
 
         private void ButtonComma_Click(object sender, EventArgs e)
         {
-            
+            calc.AddComma(labelResult.Text);
 
         }
 

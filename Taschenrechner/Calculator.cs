@@ -42,9 +42,37 @@ namespace Taschenrechner
             }
         }
 
-        public string Calculate(string result, string op) //Grundrechenarten
+        public string Calculate(string result, string op, string operand) //Grundrechenarten
         {
+            int resultInt = int.Parse(result);
+            int operandInt = int.Parse(operand);
+
+
+
+            switch (op)
+            {
+                
+                case "+":
+                    result = (resultInt += operandInt).ToString();
+                    return result;
+                case "-":
+                    result = (resultInt -= operandInt).ToString();
+                    return result;
+                case "*":
+                    result = (resultInt *= operandInt).ToString();
+                    return result;
+                case "/":
+                    result = (resultInt /= operandInt).ToString();
+                    return result;
+                default:
+                    break;
+            }
             return result;
+
         }
+
+       
+
+        
     }
 }

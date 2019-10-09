@@ -42,32 +42,40 @@ namespace Taschenrechner
             }
         }
 
-        public string Calculate(string result, string op, string operand) //Grundrechenarten
+        public string Calculate(string newValue, string op, string oldValue) //Grundrechenarten
         {
-            int resultInt = int.Parse(result);
-            int operandInt = int.Parse(operand);
+            double newValueD = double.Parse(newValue);
+            double oldValueD;
 
-
-
-            switch (op)
+            if (string.IsNullOrEmpty(oldValue))
             {
-                
-                case "+":
-                    result = (resultInt += operandInt).ToString();
-                    return result;
-                case "-":
-                    result = (resultInt -= operandInt).ToString();
-                    return result;
-                case "*":
-                    result = (resultInt *= operandInt).ToString();
-                    return result;
-                case "/":
-                    result = (resultInt /= operandInt).ToString();
-                    return result;
-                default:
-                    break;
+                return newValue;   
             }
-            return result;
+            else
+            {
+                 oldValueD = double.Parse(oldValue);
+                switch (op)
+                {
+
+                    case "+":
+                        newValue = (oldValueD += newValueD).ToString();
+                        return newValue;
+                    case "-":
+                        newValue = (oldValueD -= newValueD).ToString();
+                        return newValue;
+                    case "*":
+                        newValue = (oldValueD *= newValueD).ToString();
+                        return newValue;
+                    case "/":
+                        newValue = (oldValueD /= newValueD).ToString();
+                        return newValue;
+                    default:
+                        break;
+                }
+                return newValue;
+            }
+
+            
 
         }
 

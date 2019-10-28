@@ -12,7 +12,8 @@ namespace Taschenrechner
 {
     public partial class Form1 : Form
     {
-        private string oldValue{ get; set; }
+        private string currentOperator;
+        private string oldValue;
         Calculator calc = new Calculator();
         public Form1()
         {
@@ -76,26 +77,49 @@ namespace Taschenrechner
 
         private void ButtonAddition_Click(object sender, EventArgs e)
         {
-
-            oldValue = calc.Calculate(labelCalculate.Text, "+", oldValue);
+            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
             labelResult.Text = oldValue;
+            currentOperator = "+";
+            labelOperator.Text = currentOperator;
             labelCalculate.Text = "0";
-
         }
 
         private void ButtonSubstraction_Click(object sender, EventArgs e)
         {
-            
+            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+            labelResult.Text = oldValue;
+            currentOperator = "-";
+            labelOperator.Text = currentOperator;
+            labelCalculate.Text = "0";
         }
 
         private void ButtonMultiplication_Click(object sender, EventArgs e)
         {
-            
+            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+            labelResult.Text = oldValue;
+            currentOperator = "*";
+            labelOperator.Text = currentOperator;
+            labelCalculate.Text = "0";
         }
 
+        //Fehlertext für "Durch 0 teilen" in Methode für Rechung allgemein?
         private void ButtonDivision_Click(object sender, EventArgs e)
         {
+            if (labelCalculate.Text != "0")
+            {
+                oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+                labelResult.Text = oldValue;
+                currentOperator = "/";
+                labelOperator.Text = currentOperator;
+            }
+            else
+            {
+                labelCalculate.Text = "Du kannst nicht durch 0 teilen!";
+                System.Threading.Thread.Sleep(500);
+            }
             
+            
+            labelCalculate.Text = "0";
         }
 
         private void ButtonComma_Click(object sender, EventArgs e)
@@ -104,8 +128,15 @@ namespace Taschenrechner
 
         }
 
+        private void ButtonCE_Click(object sender, EventArgs e)
+        {
+            labelCalculate.Text = "0";
+        }
         private void ButtonC_Click(object sender, EventArgs e)
         {
+            currentOperator = "";
+            labelOperator.Text = "";
+            oldValue = "0";
             labelCalculate.Text = "0";
             labelResult.Text = "";
         }
@@ -138,6 +169,15 @@ namespace Taschenrechner
                 case Keys.Oemcomma: labelCalculate.Text = calc.AddComma(labelCalculate.Text); break;
 
 
+            }
+        }
+
+        private void ButtonNegate_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(labelResult.Text))
+            {
+                oldValue = (double.Parse(labelResult.Text) * (-1)).ToString();
+                labelResult.Text = oldValue; 
             }
         }
     }

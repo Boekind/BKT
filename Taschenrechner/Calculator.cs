@@ -67,8 +67,9 @@ namespace Taschenrechner
                         newValue = (oldValueD *= newValueD).ToString();
                         return newValue;
                     case "/":
-                        newValue = (oldValueD /= newValueD).ToString();
-                        return newValue;
+                            newValue = (oldValueD /= newValueD).ToString();
+                            return newValue;
+                        
                     default:
                         break;
                 }

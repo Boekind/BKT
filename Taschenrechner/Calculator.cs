@@ -53,25 +53,33 @@ namespace Taschenrechner
             }
             else
             {
-                 oldValueD = double.Parse(oldValue);
-                switch (op)
+                if (newValue == "0" && op == "/")
                 {
+                    
+                }
+                else
+                {
+                    oldValueD = double.Parse(oldValue);
+                    switch (op)
+                    {
 
-                    case "+":
-                        newValue = (oldValueD += newValueD).ToString();
-                        return newValue;
-                    case "-":
-                        newValue = (oldValueD -= newValueD).ToString();
-                        return newValue;
-                    case "*":
-                        newValue = (oldValueD *= newValueD).ToString();
-                        return newValue;
-                    case "/":
+                        case "+":
+                            newValue = (oldValueD += newValueD).ToString();
+                            return newValue;
+                        case "-":
+                            newValue = (oldValueD -= newValueD).ToString();
+                            return newValue;
+                        case "*":
+                            newValue = (oldValueD *= newValueD).ToString();
+                            return newValue;
+                        case "/":
                             newValue = (oldValueD /= newValueD).ToString();
                             return newValue;
-                        
-                    default:
-                        break;
+
+                        default:
+                            break;
+                    }
+                    
                 }
                 return newValue;
             }

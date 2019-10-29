@@ -105,18 +105,18 @@ namespace Taschenrechner
         //Fehlertext für "Durch 0 teilen" in Methode für Rechung allgemein?
         private void ButtonDivision_Click(object sender, EventArgs e)
         {
-            if (labelCalculate.Text != "0")
-            {
+            //if (labelCalculate.Text != "0")
+            //{
                 oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
                 labelResult.Text = oldValue;
                 currentOperator = "/";
                 labelOperator.Text = currentOperator;
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 labelCalculate.Text = "Du kannst nicht durch 0 teilen!";
                 System.Threading.Thread.Sleep(500);
-            }
+            //}
             
             
             labelCalculate.Text = "0";

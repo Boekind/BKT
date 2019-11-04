@@ -77,49 +77,75 @@ namespace Taschenrechner
 
         private void ButtonAddition_Click(object sender, EventArgs e)
         {
-            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
-            labelResult.Text = oldValue;
-            currentOperator = "+";
-            labelOperator.Text = currentOperator;
-            labelCalculate.Text = "0";
+            if (labelCalculate.Text == "0" && labelOperator.Text == "/")
+            {
+                labelResult.Text = "Du kannst nicht durch 0 teilen.";
+                EnableButtons(false);
+                buttonC.Enabled = true;
+            }
+            else
+            {
+                oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+                labelResult.Text = oldValue;
+                currentOperator = "+";
+                labelOperator.Text = currentOperator;
+                labelCalculate.Text = "0";
+            }   
         }
 
         private void ButtonSubstraction_Click(object sender, EventArgs e)
         {
-            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
-            labelResult.Text = oldValue;
-            currentOperator = "-";
-            labelOperator.Text = currentOperator;
-            labelCalculate.Text = "0";
+            if (labelCalculate.Text == "0" && labelOperator.Text == "/")
+            {
+                labelResult.Text = "Du kannst nicht durch 0 teilen.";
+                EnableButtons(false);
+                buttonC.Enabled = true;
+            }
+            else
+            {
+                oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+                labelResult.Text = oldValue;
+                currentOperator = "-";
+                labelOperator.Text = currentOperator;
+                labelCalculate.Text = "0";
+            }
         }
 
         private void ButtonMultiplication_Click(object sender, EventArgs e)
         {
-            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
-            labelResult.Text = oldValue;
-            currentOperator = "*";
-            labelOperator.Text = currentOperator;
-            labelCalculate.Text = "0";
+            if (labelCalculate.Text == "0" && labelOperator.Text == "/")
+            {
+                labelResult.Text = "Du kannst nicht durch 0 teilen.";
+                EnableButtons(false);
+                buttonC.Enabled = true;
+            }
+            else
+            {
+                oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+                labelResult.Text = oldValue;
+                currentOperator = "*";
+                labelOperator.Text = currentOperator;
+                labelCalculate.Text = "0";
+            }
         }
 
         //Fehlertext für "Durch 0 teilen" in Methode für Rechung allgemein?
         private void ButtonDivision_Click(object sender, EventArgs e)
         {
-            //if (labelCalculate.Text != "0")
-            //{
+            if (labelCalculate.Text == "0" && labelOperator.Text == "/")
+            {
+                labelResult.Text = "Du kannst nicht durch 0 teilen.";
+                EnableButtons(false);
+                buttonC.Enabled = true;
+            }
+            else
+            {
                 oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
                 labelResult.Text = oldValue;
                 currentOperator = "/";
                 labelOperator.Text = currentOperator;
-            //}
-            //else
-            //{
-                labelCalculate.Text = "Du kannst nicht durch 0 teilen!";
-                System.Threading.Thread.Sleep(500);
-            //}
-            
-            
-            labelCalculate.Text = "0";
+                labelCalculate.Text = "0";
+            }
         }
 
         private void ButtonComma_Click(object sender, EventArgs e)
@@ -139,12 +165,10 @@ namespace Taschenrechner
             oldValue = "0";
             labelCalculate.Text = "0";
             labelResult.Text = "";
+            EnableButtons(true);
         }
 
-        private void Button10_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void LabelResult_Click(object sender, EventArgs e)
         {
@@ -179,6 +203,38 @@ namespace Taschenrechner
                 oldValue = (double.Parse(labelResult.Text) * (-1)).ToString();
                 labelResult.Text = oldValue; 
             }
+        }
+
+        private void EnableButtons(bool enable)
+        {
+            button0.Enabled = enable;
+            button1.Enabled = enable;
+            button2.Enabled = enable;
+            button3.Enabled = enable;
+            button4.Enabled = enable;
+            button5.Enabled = enable;
+            button6.Enabled = enable;
+            button7.Enabled = enable;
+            button8.Enabled = enable;
+            button9.Enabled = enable;
+            buttonAddition.Enabled = enable;
+            buttonBackspace.Enabled = enable;
+            buttonDivision.Enabled = enable;
+            buttonCalculate.Enabled = enable;
+            buttonCE.Enabled = enable;
+            buttonComma.Enabled = enable;
+            buttonCos.Enabled = enable;
+            buttonMultiplication.Enabled = enable;
+            buttonNegate.Enabled = enable;
+            buttonC.Enabled = enable;
+            buttonSin.Enabled = enable;
+            buttonSubstraction.Enabled = enable;
+            buttonTan.Enabled = enable;
+            buttonPercent.Enabled = enable;
+            buttonRoot.Enabled = enable;
+            buttonSquare.Enabled = enable;
+            buttonFraction.Enabled = enable;
+            
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner
 {
-    class Calculator
+    class  Calculator
     {
-        public const int MAX_LENGTH = 13; 
+        public const int MAX_LENGTH = 10; 
         public string AddNumber(string result, string number)
         {
 
@@ -53,12 +53,7 @@ namespace Taschenrechner
             }
             else
             {
-                if (newValue == "0" && op == "/")
-                {
-                    
-                }
-                else
-                {
+                
                     oldValueD = double.Parse(oldValue);
                     switch (op)
                     {
@@ -78,7 +73,6 @@ namespace Taschenrechner
 
                         default:
                             break;
-                    }
                     
                 }
                 return newValue;

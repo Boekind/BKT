@@ -15,9 +15,14 @@ namespace Taschenrechner
         private string currentOperator;
         private string oldValue;
         Calculator calc = new Calculator();
+        float labelCalcFontSize = 0;
+        float labelResultFontSize = 0;
+
         public Form1()
         {
             InitializeComponent();
+            labelCalcFontSize = labelCalculate.Font.Size;
+            labelResultFontSize = labelResult.Font.Size;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -90,7 +95,9 @@ namespace Taschenrechner
                 currentOperator = "+";
                 labelOperator.Text = currentOperator;
                 labelCalculate.Text = "0";
-            }   
+            }
+
+            AutoFitLabelSize(labelResult, labelResultFontSize);
         }
 
         private void ButtonSubstraction_Click(object sender, EventArgs e)
@@ -109,6 +116,7 @@ namespace Taschenrechner
                 labelOperator.Text = currentOperator;
                 labelCalculate.Text = "0";
             }
+            AutoFitLabelSize(labelResult, labelResultFontSize);
         }
 
         private void ButtonMultiplication_Click(object sender, EventArgs e)
@@ -127,6 +135,8 @@ namespace Taschenrechner
                 labelOperator.Text = currentOperator;
                 labelCalculate.Text = "0";
             }
+            AutoFitLabelSize(labelResult, labelResultFontSize);
+
         }
 
         //Fehlertext für "Durch 0 teilen" in Methode für Rechung allgemein?
@@ -146,6 +156,7 @@ namespace Taschenrechner
                 labelOperator.Text = currentOperator;
                 labelCalculate.Text = "0";
             }
+            AutoFitLabelSize(labelResult, labelResultFontSize);
         }
 
         private void ButtonComma_Click(object sender, EventArgs e)
@@ -157,6 +168,7 @@ namespace Taschenrechner
         private void ButtonCE_Click(object sender, EventArgs e)
         {
             labelCalculate.Text = "0";
+            AutoFitLabelSize(labelCalculate, labelCalcFontSize);
         }
         private void ButtonC_Click(object sender, EventArgs e)
         {
@@ -166,6 +178,7 @@ namespace Taschenrechner
             labelCalculate.Text = "0";
             labelResult.Text = "";
             EnableButtons(true);
+            AutoFitLabelSize(labelCalculate, labelCalcFontSize);
         }
 
        
@@ -198,10 +211,9 @@ namespace Taschenrechner
 
         private void ButtonNegate_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(labelResult.Text))
+            if (!string.IsNullOrEmpty(labelCalculate.Text))
             {
-                oldValue = (double.Parse(labelResult.Text) * (-1)).ToString();
-                labelResult.Text = oldValue; 
+                labelCalculate.Text = (double.Parse(labelCalculate.Text) * (-1)).ToString();
             }
         }
 
@@ -233,8 +245,84 @@ namespace Taschenrechner
             buttonPercent.Enabled = enable;
             buttonRoot.Enabled = enable;
             buttonSquare.Enabled = enable;
-            buttonFraction.Enabled = enable;
+            buttonMod.Enabled = enable;
             
+        }
+
+        private void ButtonCalculate_Click(object sender, EventArgs e)
+        {
+            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, labelResult.Text);
+            labelCalculate.Text = oldValue;
+            labelResult.Text = "";
+            oldValue = "0";
+            currentOperator = "";
+            labelOperator.Text = currentOperator;
+            AutoFitLabelSize(labelCalculate, labelCalcFontSize);
+        }
+
+        private void ButtonBackspace_Click(object sender, EventArgs e)
+        {
+            int textLength = labelCalculate.Text.Length;
+            int charsToRemove = 1;
+
+            if (labelCalculate.Text.Contains("E") || textLength < 2 || (textLength == 2 && labelCalculate.Text[0] == '-'))
+            {
+                labelCalculate.Text = "0";
+                AutoFitLabelSize(labelCalculate, labelCalcFontSize);
+                return;
+            }
+
+            if (textLength >= 3 && labelCalculate.Text[textLength - 2] == ',')
+            {
+                charsToRemove = 2;
+            }
+
+            labelCalculate.Text = labelCalculate.Text.Substring(0, textLength - charsToRemove);
+            AutoFitLabelSize(labelCalculate, labelCalcFontSize);
+        }
+
+        private void AutoFitLabelSize(Label label, float baseSize)
+        {
+            label.Font = new Font(label.Font.FontFamily, baseSize, label.Font.Style);
+            while (label.Width < TextRenderer.MeasureText(label.Text, new Font(label.Font.FontFamily, label.Font.Size, label.Font.Style)).Width)
+            {
+                label.Font = new Font(label.Font.FontFamily, label.Font.Size - 0.5f, label.Font.Style);
+            }
+        }
+
+        private void ButtonMod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSquare_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonRoot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonPercent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonCos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonTan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

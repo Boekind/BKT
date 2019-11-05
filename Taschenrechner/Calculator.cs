@@ -45,6 +45,7 @@ namespace Taschenrechner
         public string SinCosTan(string newValue, string op)
         {
             double newValueD = double.Parse(newValue);
+            double test;
 
             switch (op)
             {
@@ -56,6 +57,13 @@ namespace Taschenrechner
                     return newValue;
                 case "tan":
                     newValue = (Math.Tan(newValueD)).ToString();
+                    return newValue;
+                case "square":
+                    newValue = (Math.Pow(newValueD, 2)).ToString();
+                    test = Math.Pow(newValueD, 2);
+                    return newValue;
+                case "root":
+                    newValue = (Math.Sqrt(newValueD)).ToString();
                     return newValue;
                 default:
                     break;
@@ -95,6 +103,12 @@ namespace Taschenrechner
                             return oldValue;
                         }
                         newValue = (oldValueD %= newValueD).ToString();
+                        return newValue;
+                    case "x^y":
+                        newValue = (Math.Pow(oldValueD, newValueD).ToString());
+                        return newValue;
+                    case "%":
+                        newValue = (oldValueD * (newValueD / 100)).ToString();
                         return newValue;
 
                     default:

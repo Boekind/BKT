@@ -59,12 +59,13 @@
             this.buttonCos = new System.Windows.Forms.Button();
             this.buttonTan = new System.Windows.Forms.Button();
             this.labelOperator = new System.Windows.Forms.Label();
+            this.buttonPower = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBackspace
             // 
             this.buttonBackspace.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBackspace.Location = new System.Drawing.Point(253, 91);
+            this.buttonBackspace.Location = new System.Drawing.Point(255, 91);
             this.buttonBackspace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonBackspace.Name = "buttonBackspace";
             this.buttonBackspace.Size = new System.Drawing.Size(57, 49);
@@ -103,11 +104,10 @@
             this.labelCalculate.Location = new System.Drawing.Point(53, 44);
             this.labelCalculate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCalculate.Name = "labelCalculate";
-            this.labelCalculate.Size = new System.Drawing.Size(260, 45);
+            this.labelCalculate.Size = new System.Drawing.Size(259, 45);
             this.labelCalculate.TabIndex = 34;
             this.labelCalculate.Text = "0";
             this.labelCalculate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelCalculate.Click += new System.EventHandler(this.LabelResult_Click);
             // 
             // labelResult
             // 
@@ -207,7 +207,7 @@
             // buttonMultiplication
             // 
             this.buttonMultiplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMultiplication.Location = new System.Drawing.Point(255, 197);
+            this.buttonMultiplication.Location = new System.Drawing.Point(254, 197);
             this.buttonMultiplication.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonMultiplication.Name = "buttonMultiplication";
             this.buttonMultiplication.Size = new System.Drawing.Size(57, 49);
@@ -395,7 +395,7 @@
             // buttonMod
             // 
             this.buttonMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMod.Location = new System.Drawing.Point(11, 303);
+            this.buttonMod.Location = new System.Drawing.Point(11, 355);
             this.buttonMod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonMod.Name = "buttonMod";
             this.buttonMod.Size = new System.Drawing.Size(57, 49);
@@ -426,7 +426,7 @@
             this.buttonRoot.Name = "buttonRoot";
             this.buttonRoot.Size = new System.Drawing.Size(57, 49);
             this.buttonRoot.TabIndex = 41;
-            this.buttonRoot.Text = "√";
+            this.buttonRoot.Text = "²√";
             this.buttonRoot.UseVisualStyleBackColor = true;
             this.buttonRoot.Click += new System.EventHandler(this.ButtonRoot_Click);
             // 
@@ -493,11 +493,26 @@
             this.labelOperator.TabIndex = 46;
             this.labelOperator.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // buttonPower
+            // 
+            this.buttonPower.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonPower.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPower.Location = new System.Drawing.Point(11, 303);
+            this.buttonPower.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonPower.Name = "buttonPower";
+            this.buttonPower.Size = new System.Drawing.Size(57, 49);
+            this.buttonPower.TabIndex = 47;
+            this.buttonPower.Text = " x^y";
+            this.buttonPower.UseVisualStyleBackColor = false;
+            this.buttonPower.Click += new System.EventHandler(this.ButtonPower_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(322, 415);
+            this.Controls.Add(this.buttonPower);
             this.Controls.Add(this.labelOperator);
             this.Controls.Add(this.buttonTan);
             this.Controls.Add(this.buttonCos);
@@ -572,6 +587,7 @@
         private System.Windows.Forms.Button buttonCos;
         private System.Windows.Forms.Button buttonTan;
         private System.Windows.Forms.Label labelOperator;
+        private System.Windows.Forms.Button buttonPower;
     }
 }
 

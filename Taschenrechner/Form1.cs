@@ -94,6 +94,7 @@ namespace Taschenrechner
                 labelResult.Text = oldValue;
                 currentOperator = "+";
                 labelOperator.Text = currentOperator;
+                AutoFitLabelSize(labelOperator, labelCalcFontSize);
                 labelCalculate.Text = "0";
             }
 
@@ -114,6 +115,7 @@ namespace Taschenrechner
                 labelResult.Text = oldValue;
                 currentOperator = "-";
                 labelOperator.Text = currentOperator;
+                AutoFitLabelSize(labelOperator, labelCalcFontSize);
                 labelCalculate.Text = "0";
             }
             AutoFitLabelSize(labelResult, labelResultFontSize);
@@ -133,6 +135,7 @@ namespace Taschenrechner
                 labelResult.Text = oldValue;
                 currentOperator = "*";
                 labelOperator.Text = currentOperator;
+                AutoFitLabelSize(labelOperator, labelCalcFontSize);
                 labelCalculate.Text = "0";
             }
             AutoFitLabelSize(labelResult, labelResultFontSize);
@@ -154,6 +157,7 @@ namespace Taschenrechner
                 labelResult.Text = oldValue;
                 currentOperator = "/";
                 labelOperator.Text = currentOperator;
+                AutoFitLabelSize(labelOperator, labelCalcFontSize);
                 labelCalculate.Text = "0";
             }
             AutoFitLabelSize(labelResult, labelResultFontSize);
@@ -292,7 +296,21 @@ namespace Taschenrechner
 
         private void ButtonMod_Click(object sender, EventArgs e)
         {
-
+            if (labelCalculate.Text == "0" && labelOperator.Text == "/")
+            {
+                labelResult.Text = "Du kannst nicht durch 0 teilen.";
+                EnableButtons(false);
+                buttonC.Enabled = true;
+            }
+            else
+            {
+                oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+                labelResult.Text = oldValue;
+                currentOperator = "Mod";
+                labelOperator.Text = currentOperator;
+                AutoFitLabelSize(labelOperator, labelCalcFontSize);
+                labelCalculate.Text = "0";
+            }
         }
 
         private void ButtonSquare_Click(object sender, EventArgs e)
@@ -312,17 +330,17 @@ namespace Taschenrechner
 
         private void ButtonSin_Click(object sender, EventArgs e)
         {
-
+            labelCalculate.Text = calc.SinCosTan(labelCalculate.Text, "sin");
         }
 
         private void ButtonCos_Click(object sender, EventArgs e)
         {
-
+            labelCalculate.Text = calc.SinCosTan(labelCalculate.Text, "cos");
         }
 
         private void ButtonTan_Click(object sender, EventArgs e)
         {
-
+            labelCalculate.Text = calc.SinCosTan(labelCalculate.Text, "tan");
         }
     }
 }

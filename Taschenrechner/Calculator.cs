@@ -42,6 +42,27 @@ namespace Taschenrechner
             }
         }
 
+        public string SinCosTan(string newValue, string op)
+        {
+            double newValueD = double.Parse(newValue);
+
+            switch (op)
+            {
+                case "sin":
+                    newValue = (Math.Sin(newValueD)).ToString();
+                    return newValue;
+                case "cos":
+                    newValue = (Math.Cos(newValueD)).ToString();
+                    return newValue;
+                case "tan":
+                    newValue = (Math.Tan(newValueD)).ToString();
+                    return newValue;
+                default:
+                    break;
+            }
+            return newValue;
+        }
+
         public string Calculate(string newValue, string op, string oldValue) //Grundrechenarten
         {
             double newValueD = double.Parse(newValue);
@@ -53,26 +74,31 @@ namespace Taschenrechner
             }
             else
             {
-                
-                    oldValueD = double.Parse(oldValue);
-                    switch (op)
-                    {
+                oldValueD = double.Parse(oldValue);
+                switch (op)
+                {
+                    case "+":
+                        newValue = (oldValueD += newValueD).ToString();
+                        return newValue;
+                    case "-":
+                        newValue = (oldValueD -= newValueD).ToString();
+                        return newValue;
+                    case "*":
+                        newValue = (oldValueD *= newValueD).ToString();
+                        return newValue;
+                    case "/":
+                        newValue = (oldValueD /= newValueD).ToString();
+                        return newValue;
+                    case "Mod":
+                        if (newValue == "0")
+                        {
+                            return oldValue;
+                        }
+                        newValue = (oldValueD %= newValueD).ToString();
+                        return newValue;
 
-                        case "+":
-                            newValue = (oldValueD += newValueD).ToString();
-                            return newValue;
-                        case "-":
-                            newValue = (oldValueD -= newValueD).ToString();
-                            return newValue;
-                        case "*":
-                            newValue = (oldValueD *= newValueD).ToString();
-                            return newValue;
-                        case "/":
-                            newValue = (oldValueD /= newValueD).ToString();
-                            return newValue;
-
-                        default:
-                            break;
+                    default:
+                        break;
                     
                 }
                 return newValue;

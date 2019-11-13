@@ -14,15 +14,20 @@ namespace Taschenrechner
     {
         private string currentOperator;
         private string oldValue;
-        Calculator calc = new Calculator();
-        float labelCalcFontSize = 0;
-        float labelResultFontSize = 0;
+        private Calculator calc = new Calculator();
+        private float labelCalcFontSize = 0;
+        private float labelResultFontSize = 0;
+        private Size baseWindowSize = new Size(340, 455);
+        private Size scienceWindowSize = new Size(475, 455);
+        private bool scienceModeEnabled = false;
+
 
         public Form1()
         {
             InitializeComponent();
             labelCalcFontSize = labelCalculate.Font.Size;
             labelResultFontSize = labelResult.Font.Size;
+            Size = baseWindowSize;
         }
 
         //Numbers
@@ -162,7 +167,7 @@ namespace Taschenrechner
                 if (labelCalculate.Text.StartsWith("-"))
                     throw new Exception();
 
-                labelCalculate.Text = calc.SinCosTan(labelCalculate.Text, "root");
+                labelCalculate.Text = calc.OneOperand(labelCalculate.Text, "root");
                 AutoFitLabelSize(labelCalculate, labelCalcFontSize);
             }
             catch
@@ -185,6 +190,47 @@ namespace Taschenrechner
         private void ButtonTan_Click(object sender, EventArgs e)
         {
             CalcWithOneOperand("tan");
+        }
+
+        private void ButtonASin_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("aSin");
+        }
+
+        private void ButtonACos_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("aCos");
+        }
+
+        private void ButtonATan_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("aTan");
+        }
+
+        private void ButtonPi_Click(object sender, EventArgs e)
+        {
+            labelCalculate.Text = Math.PI.ToString();
+            AutoFitLabelSize(labelCalculate, labelCalcFontSize);
+        }
+
+        private void ButtonCeil_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("ceil");
+        }
+
+        private void ButtonRound_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("round");
+        }
+
+        private void ButtonFloor_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("floor");
+        }
+
+        private void ButtonLn_Click(object sender, EventArgs e)
+        {
+            CalcWithOneOperand("ln");
         }
 
         //Etc.
@@ -213,7 +259,7 @@ namespace Taschenrechner
         }
         private void ButtonCalculate_Click(object sender, EventArgs e)
         {
-            oldValue = calc.Calculate(labelCalculate.Text, currentOperator, labelResult.Text);
+            oldValue = calc.TwoOperands(labelCalculate.Text, currentOperator, labelResult.Text);
             labelCalculate.Text = oldValue;
             labelResult.Text = "";
             oldValue = "0";
@@ -286,7 +332,7 @@ namespace Taschenrechner
             {
                 if (labelCalculate.Text == "0" && labelOperator.Text == "/")
                     throw new Exception();
-                oldValue = calc.Calculate(labelCalculate.Text, currentOperator, oldValue);
+                oldValue = calc.TwoOperands(labelCalculate.Text, currentOperator, oldValue);
                 labelResult.Text = oldValue;
                 currentOperator = switchOperator;
                 labelOperator.Text = currentOperator;
@@ -302,8 +348,32 @@ namespace Taschenrechner
         }
         private void CalcWithOneOperand(string switchOperator)
         {
-            labelCalculate.Text = calc.SinCosTan(labelCalculate.Text, switchOperator);
-            AutoFitLabelSize(labelCalculate, labelCalcFontSize);
+            try
+            {
+                labelCalculate.Text = calc.OneOperand(labelCalculate.Text, switchOperator);
+                AutoFitLabelSize(labelCalculate, labelCalcFontSize);
+            }
+            catch
+            {
+                MessageBox.Show("Math Error.");
+                ButtonC_Click(null, null);
+            }
+            
         }
+
+        private void ButtonScience_Click(object sender, EventArgs e)
+        {
+            if (!scienceModeEnabled)
+            {
+                Size = scienceWindowSize;
+            }
+            else
+            {
+                Size = baseWindowSize;
+            }
+            scienceModeEnabled = !scienceModeEnabled;
+        }
+
+
     }
 }

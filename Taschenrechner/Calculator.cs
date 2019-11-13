@@ -42,36 +42,59 @@ namespace Taschenrechner
             }
         }
 
-        public string SinCosTan(string newValue, string op)
+        public string OneOperand(string newValue, string op)
         {
             double newValueD = double.Parse(newValue);
-            double test;
 
             switch (op)
             {
                 case "sin":
                     newValue = (Math.Sin(newValueD)).ToString();
-                    return newValue;
+                    break;
                 case "cos":
                     newValue = (Math.Cos(newValueD)).ToString();
-                    return newValue;
+                    break;
                 case "tan":
                     newValue = (Math.Tan(newValueD)).ToString();
-                    return newValue;
+                    break;
                 case "square":
                     newValue = (Math.Pow(newValueD, 2)).ToString();
-                    test = Math.Pow(newValueD, 2);
-                    return newValue;
+                    break;
                 case "root":
                     newValue = (Math.Sqrt(newValueD)).ToString();
-                    return newValue;
+                    break;
+                case "aSin":
+                    newValue = (Math.Asin(newValueD)).ToString();
+                    break;
+                case "aCos":
+                    newValue = (Math.Acos(newValueD)).ToString();
+                    break;
+                case "aTan":
+                    newValue = (Math.Atan(newValueD)).ToString();
+                    break;
+                case "ceil":
+                    newValue = (Math.Ceiling(newValueD)).ToString();
+                    break;
+                case "round":
+                    newValue = (Math.Round(newValueD, MidpointRounding.AwayFromZero)).ToString();
+                    break;
+                case "floor":
+                    newValue = (Math.Floor(newValueD)).ToString();
+                    break;
+                case "ln":
+                    newValue = (Math.Log(newValueD)).ToString();
+                    break;
                 default:
                     break;
+            }
+            if (double.IsNaN(double.Parse(newValue)) || double.IsInfinity(double.Parse(newValue)))
+            {
+                throw new Exception();
             }
             return newValue;
         }
 
-        public string Calculate(string newValue, string op, string oldValue) //Grundrechenarten
+        public string TwoOperands(string newValue, string op, string oldValue) //Grundrechenarten
         {
             double newValueD = double.Parse(newValue);
             double oldValueD;

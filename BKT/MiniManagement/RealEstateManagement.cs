@@ -49,14 +49,15 @@ namespace MiniManagement
 
         public void Load()
         {
-            //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
-            //string jsonString = JsonSerializer.Serialize();
-            //File.WriteAllText(fileName, jsonString);
+            
         }
 
         public void Save()
         {
-
+            //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
+            string fileName = @"C:\Users\Bökint\Desktop\TestFile.txt";
+            string jsonString = JsonConvert.SerializeObject(Test, Formatting.Indented);
+            File.WriteAllText(fileName, jsonString);
         }
 
 

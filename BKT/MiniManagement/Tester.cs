@@ -28,49 +28,49 @@ namespace MiniManagement
 
             RealEstateManagement rem = new RealEstateManagement();
 
-            rem.Add(apartment);
-            rem.Add(ac);
-            rem.Add(home);
+            //rem.Add(apartment);
+            //rem.Add(ac);
+            //rem.Add(home);
 
-            //In Methode:
-            for (int i = 0; i < rem.GetCount(); i++)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(rem.Get(i).GetType().Name);
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine(rem.Get(i));
-                Console.WriteLine(line);
-            }
+            ////In Methode:
+            //for (int i = 0; i < rem.GetCount(); i++)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    Console.WriteLine(rem.Get(i).GetType().Name);
+            //    Console.ForegroundColor = ConsoleColor.Gray;
+            //    Console.WriteLine(rem.Get(i));
+            //    Console.WriteLine(line);
+            //}
 
-            Console.ReadKey();
-            Console.Clear();
-            rem.Delete(home);
+            //Console.ReadKey();
+            //Console.Clear();
+            //rem.Delete(home);
 
-            for (int i = 0; i < rem.GetCount(); i++)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(rem.Get(i).GetType().Name);
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine(rem.Get(i));
-                Console.WriteLine(line);
-            }
+            //for (int i = 0; i < rem.GetCount(); i++)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    Console.WriteLine(rem.Get(i).GetType().Name);
+            //    Console.ForegroundColor = ConsoleColor.Gray;
+            //    Console.WriteLine(rem.Get(i));
+            //    Console.WriteLine(line);
+            //}
 
-            Console.ReadKey();
-            rem.Delete(1);
+            //Console.ReadKey();
+            //rem.Delete(1);
 
-            Console.Clear();
+            //Console.Clear();
 
 
-            for (int i = 0; i < rem.GetCount(); i++)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(rem.Get(i).GetType().Name);
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine(rem.Get(i));
-                Console.WriteLine(line);
-            }
+            //for (int i = 0; i < rem.GetCount(); i++)
+            //{
+            //    Console.ForegroundColor = ConsoleColor.Red;
+            //    Console.WriteLine(rem.Get(i).GetType().Name);
+            //    Console.ForegroundColor = ConsoleColor.Gray;
+            //    Console.WriteLine(rem.Get(i));
+            //    Console.WriteLine(line);
+            //}
 
-            //rem.Load();
+            rem.Save();
 
             Console.ReadKey();
         }

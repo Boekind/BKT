@@ -9,5 +9,10 @@ namespace MiniManagement
     class ApartmentComplex : RealEstate
     {
         List<Apartment> apartmentList = new List<Apartment>();
+
+        public ApartmentComplex(bool forSale, double purchasePrice, bool forRent, double rentalPrice, Address address) : base(forSale, purchasePrice, forRent, rentalPrice, address)
+        {
+
+        }
     }
 }

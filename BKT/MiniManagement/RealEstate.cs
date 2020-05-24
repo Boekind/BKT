@@ -13,6 +13,22 @@ namespace MiniManagement
         public bool ForRent { get; set; }
         public double RentalPrice { get; set; }
 
+        public Address Address { get; set; }
+
+
+        public RealEstate()
+        {
+
+        }
+        public RealEstate(bool forSale, double purchasePrice, bool forRent, double rentalPrice, Address address)
+        {
+            ForSale = forSale;
+            PurchasePrice = purchasePrice;
+            ForRent = forRent;
+            RentalPrice = rentalPrice;
+            Address = address;
+        }
+
         public override string ToString()
         {
             return RealEstateManagement.GetData(this);

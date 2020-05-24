@@ -10,7 +10,12 @@ namespace MiniManagement
     {
         public double PlotSize { get; set; }
 
-        public Home(double plotSize)
+
+        public Home()
+        {
+
+        }
+        public Home(double plotSize, int rooms, bool forSale, double purchasePrice, bool forRent, double rentalPrice, Address address) : base(rooms, forSale, purchasePrice, forRent, rentalPrice, address)
         {
             PlotSize = plotSize;
         }

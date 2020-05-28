@@ -26,25 +26,30 @@ namespace MiniManagement
             //Console.WriteLine(line);
             //Console.WriteLine(ac.ToString());
 
+            
+
             RealEstateManagement rem = new RealEstateManagement();
 
-            //rem.Add(apartment);
+            rem.Load();
+
+            rem.Add(apartment);
             //rem.Add(ac);
             //rem.Add(home);
 
-            ////In Methode:
-            //for (int i = 0; i < rem.GetCount(); i++)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Red;
-            //    Console.WriteLine(rem.Get(i).GetType().Name);
-            //    Console.ForegroundColor = ConsoleColor.Gray;
-            //    Console.WriteLine(rem.Get(i));
-            //    Console.WriteLine(line);
-            //}
-
-            //Console.ReadKey();
+            //In Methode:
+            for (int i = 0; i < rem.GetCount(); i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(rem.Get(i).GetType().Name);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine(rem.Get(i));
+                Console.WriteLine(line);
+            }
+            rem.Save();
+            Console.ReadKey();
             //Console.Clear();
             //rem.Delete(home);
+            //rem.Delete(apartment);
 
             //for (int i = 0; i < rem.GetCount(); i++)
             //{
@@ -54,7 +59,7 @@ namespace MiniManagement
             //    Console.WriteLine(rem.Get(i));
             //    Console.WriteLine(line);
             //}
-
+            //rem.Save();
             //Console.ReadKey();
             //rem.Delete(1);
 
@@ -70,7 +75,7 @@ namespace MiniManagement
             //    Console.WriteLine(line);
             //}
 
-            rem.Save();
+            //rem.Save();
 
             Console.ReadKey();
         }

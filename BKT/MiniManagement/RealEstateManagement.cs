@@ -11,6 +11,7 @@ namespace MiniManagement
 {
     class RealEstateManagement
     {
+        string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
         Home Test;
 
         List<RealEstate> reList;
@@ -49,14 +50,19 @@ namespace MiniManagement
 
         public void Load()
         {
-            
+
+            List<RealEstate> tempList = JsonConvert.DeserializeObject<List<RealEstate>>(File.ReadAllText(fileName));
+
+            if (tempList != null)
+            {
+                reList = tempList;
+            }
         }
 
         public void Save()
         {
-            //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
-            string fileName = @"C:\Users\Bökint\Desktop\TestFile.txt";
-            string jsonString = JsonConvert.SerializeObject(Test, Formatting.Indented);
+            //string fileName = @"C:\Users\Bökint\Desktop\TestFile.txt";
+            string jsonString = JsonConvert.SerializeObject(reList, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
             File.WriteAllText(fileName, jsonString);
         }
 
@@ -74,6 +80,7 @@ namespace MiniManagement
                 output += $"{item.Name}: {item.GetValue(obj)}\n";
                 //Console.WriteLine($"{item.Name}: {item.GetValue(home)}");
             }
+            
 
             return output;
         }

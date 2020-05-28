@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
-    abstract class RealEstate
+    /*abstract*/ class RealEstate
     {
         public bool ForSale { get; set; }
         public double PurchasePrice { get; set; }
@@ -16,10 +16,11 @@ namespace MiniManagement
         public Address Address { get; set; }
 
 
-        public RealEstate()
+        protected RealEstate()
         {
 
         }
+
         public RealEstate(bool forSale, double purchasePrice, bool forRent, double rentalPrice, Address address)
         {
             ForSale = forSale;
@@ -28,6 +29,7 @@ namespace MiniManagement
             RentalPrice = rentalPrice;
             Address = address;
         }
+
 
         public override string ToString()
         {

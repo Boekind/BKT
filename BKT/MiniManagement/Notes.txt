@@ -1,0 +1,2 @@
+-beim Einlesen "RealEstate" in rot anstatt z.B. "Apartment"
+-andere Lösung als nicht abstract?

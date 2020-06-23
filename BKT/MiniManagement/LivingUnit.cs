@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
+    [Serializable]
     abstract class LivingUnit : RealEstate
     {
         public int Rooms { get; set; }

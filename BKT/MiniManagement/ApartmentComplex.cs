@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
+    [Serializable]
     class ApartmentComplex : RealEstate
     {
         List<Apartment> apartmentList = new List<Apartment>();

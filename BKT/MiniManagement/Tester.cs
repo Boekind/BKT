@@ -11,12 +11,12 @@ namespace MiniManagement
         static void Main(string[] args)
         {
             Ui ui = new Ui();
-            //Address address = new Address("Deutschland", "NRW", "57399", "Kirchhundem", "Kapellenweg", "3");
-            //Home home = new Home(1.2, 3, true, 4.5, false, 0, address);
-            //Apartment apartment = new Apartment(true, 4, false, 0, true, 9.4, address);
-            //ApartmentComplex ac = new ApartmentComplex(true, 123.44, false, 0, address);
+            Address address = new Address("Deutschland", "NRW", "57399", "Kirchhundem", "Kapellenweg", "3");
+            Home home = new Home(1.2, 3, true, 4.5, false, 0, address);
+            Apartment apartment = new Apartment(true, 4, false, 0, true, 9.4, address);
+            ApartmentComplex ac = new ApartmentComplex(true, 123.44, false, 0, address);
 
-            //string line = "-------------------";
+            string line = "-------------------";
 
 
             ////Console.WriteLine(address.ToString());
@@ -29,23 +29,26 @@ namespace MiniManagement
 
 
 
-            //RealEstateManagement rem = new RealEstateManagement();
+            RealEstateManagement rem = new RealEstateManagement();
 
             //rem.Load();
 
+            //rem.Add(home);
             //rem.Add(apartment);
-            ////rem.Add(ac);
-            ////rem.Add(home);
+
+
+            rem.LoadBasic();
+
 
             ////In Methode:
-            //for (int i = 0; i < rem.GetCount(); i++)
-            //{
-            //    Console.ForegroundColor = ConsoleColor.Red;
-            //    Console.WriteLine(rem.Get(i).GetType().Name);
-            //    Console.ForegroundColor = ConsoleColor.Gray;
-            //    Console.WriteLine(rem.Get(i));
-            //    Console.WriteLine(line);
-            //}
+            for (int i = 0; i < rem.GetCount(); i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(rem.Get(i).GetType().Name);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine(rem.Get(i));
+                Console.WriteLine(line);
+            }
             //rem.Save();
             //Console.ReadKey();
             ////Console.Clear();
@@ -83,21 +86,21 @@ namespace MiniManagement
             //    Console.WriteLine(Console.ReadKey(true).Key);
             //}
 
-            switch (ui.AskMenu())
-            {
-                case ConsoleKey.D1:
-                case ConsoleKey.NumPad1:
-                    Console.WriteLine("Immobilie X wird angezeigt");
-                    break;
-                case ConsoleKey.D2:
-                case ConsoleKey.NumPad2:
-                    Console.WriteLine("Immobilie hinzufügen");
-                    break;
-                case ConsoleKey.D3:
-                case ConsoleKey.NumPad3:
-                    Console.WriteLine("Immobilie löschen");
-                    break;
-            }
+            //switch (ui.AskMenu())
+            //{
+            //    case ConsoleKey.D1:
+            //    case ConsoleKey.NumPad1:
+            //        Console.WriteLine("Immobilie X wird angezeigt");
+            //        break;
+            //    case ConsoleKey.D2:
+            //    case ConsoleKey.NumPad2:
+            //        Console.WriteLine("Immobilie hinzufügen");
+            //        break;
+            //    case ConsoleKey.D3:
+            //    case ConsoleKey.NumPad3:
+            //        Console.WriteLine("Immobilie löschen");
+            //        break;
+            //}
 
 
 

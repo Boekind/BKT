@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +14,8 @@ namespace MiniManagement
 {
     class RealEstateManagement
     {
-        string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
+        //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
+        string fileName = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\RealEstates.txt";
         Home Test;
 
         List<RealEstate> reList;
@@ -48,9 +52,8 @@ namespace MiniManagement
             return reList.Count();
         }
 
-        public void Load()
+        public void LoadJson()
         {
-
             List<RealEstate> tempList = JsonConvert.DeserializeObject<List<RealEstate>>(File.ReadAllText(fileName));
 
             if (tempList != null)
@@ -59,11 +62,35 @@ namespace MiniManagement
             }
         }
 
-        public void Save()
+        public void SaveJson()
         {
             //string fileName = @"C:\Users\Bökint\Desktop\TestFile.txt";
             string jsonString = JsonConvert.SerializeObject(reList, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
             File.WriteAllText(fileName, jsonString);
+        }
+
+        public void LoadBasic()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+            List<RealEstate> tempList = (List<RealEstate>)formatter.Deserialize(stream);
+            stream.Close();
+
+            if (tempList != null)
+            {
+                reList = tempList;
+            }
+
+        }
+
+        public void SaveBasic()
+        {
+            //string fileName1 = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\RealEstates.txt";
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, reList);
+            stream.Close();
         }
 
 

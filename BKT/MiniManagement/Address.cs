@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
+    [Serializable]
     class Address
     {
         public string Country { get; set; }

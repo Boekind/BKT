@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
+    [Serializable]
     class Apartment : LivingUnit
     {
         public bool CommonEntrance { get; set; }

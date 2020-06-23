@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
-    /*abstract*/ class RealEstate
+    [Serializable]
+    /*abstract*/
+    class RealEstate
     {
         public bool ForSale { get; set; }
         public double PurchasePrice { get; set; }

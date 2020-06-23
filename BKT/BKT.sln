@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniManagement", "MiniManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{3A955124-1676-43FE-9E5C-87CB29280D7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{4E82DF86-C232-4787-9482-0157C0695EF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3A955124-1676-43FE-9E5C-87CB29280D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A955124-1676-43FE-9E5C-87CB29280D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A955124-1676-43FE-9E5C-87CB29280D7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E82DF86-C232-4787-9482-0157C0695EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E82DF86-C232-4787-9482-0157C0695EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E82DF86-C232-4787-9482-0157C0695EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E82DF86-C232-4787-9482-0157C0695EF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

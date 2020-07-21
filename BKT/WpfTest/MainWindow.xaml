@@ -5,21 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         mc:Ignorable="d"
-        Title="Testzeug" Height="225" Width="414">
-    <Grid ShowGridLines="true" x:Name="myGrid" RenderTransformOrigin="0.5,0.5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <!--<Button Click="Button1_Click" Content="Sei rot!" Margin="106,155,0,0" Name="Button1" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" RenderTransformOrigin="-0.158,2.064"/>
-        <Button Click="Button2_Click" Content="Sei blau!" Margin="207,155,0,0" Name ="Button2" HorizontalAlignment="Left" Width="104" Height="32" VerticalAlignment="Top"/>
-        <Label Name="Feld1" MouseLeftButtonDown="Label_MouseLeftButtonDown" BorderThickness="2" BorderBrush="Black" Content="ssss" Margin="55,54,0,0" HorizontalAlignment="Left" Width="130" Height="28" VerticalAlignment="Top" Background="Transparent"/>
-        <Label Name="Feld2" MouseLeftButtonDown="Label_MouseLeftButtonDown" BorderThickness="2" BorderBrush="Black" Content="ssss" Margin="185,54,0,0" HorizontalAlignment="Left" Width="130" Height="28" VerticalAlignment="Top" RenderTransformOrigin="0.731,0.644"/>-->
-    </Grid>
+        Name="RootWindow"
+        Title="Testzeug" Height="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" Width="1500" SizeToContent="WidthAndHeight">
+    <WrapPanel Name="mainPanel"></WrapPanel>
 </Window>

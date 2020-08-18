@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MySql.Data.MySqlClient;
 using System.Threading.Tasks;
+using System.Net.Configuration;
 
 namespace MiniManagement
 {
@@ -10,81 +12,18 @@ namespace MiniManagement
     {
         static void Main(string[] args)
         {
-            Ui ui = new Ui();
-            Address address = new Address("Deutschland", "NRW", "57399", "Kirchhundem", "Kapellenweg", "3");
-            Home home = new Home(1.2, 3, true, 4.5, false, 0, address);
-            Apartment apartment = new Apartment(true, 4, false, 0, true, 9.4, address);
-            ApartmentComplex ac = new ApartmentComplex(true, 123.44, false, 0, address);
+            //Ui ui = new Ui();
+            //Address address = new Address("Deutschland", "NRW", "57399", "Kirchhundem", "Kapellenweg", "3");
+            //Home home = new Home(1.2, 3, true, 4.5, false, 0, address);
+            //Apartment apartment = new Apartment(true, 4, false, 0, true, 9.4, address);
+            //ApartmentComplex ac = new ApartmentComplex(true, 123.44, false, 0, address);
 
-            string line = "-------------------";
+            //RealEstateManagement rem = new RealEstateManagement();
 
+            //rem.LoadJson();
 
-            ////Console.WriteLine(address.ToString());
-            ////Console.WriteLine(line);
-            ////Console.WriteLine(home.ToString());
-            ////Console.WriteLine(line);
-            ////Console.WriteLine(apartment.ToString());
-            ////Console.WriteLine(line);
-            ////Console.WriteLine(ac.ToString());
+            //rem.ShowAllRealEstates();
 
-
-
-            RealEstateManagement rem = new RealEstateManagement();
-
-            //rem.Load();
-
-            //rem.Add(home);
-            //rem.Add(apartment);
-
-
-            rem.LoadBasic();
-
-
-            ////In Methode:
-            for (int i = 0; i < rem.GetCount(); i++)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(rem.Get(i).GetType().Name);
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.WriteLine(rem.Get(i));
-                Console.WriteLine(line);
-            }
-            //rem.Save();
-            //Console.ReadKey();
-            ////Console.Clear();
-            ////rem.Delete(home);
-            ////rem.Delete(apartment);
-
-            ////for (int i = 0; i < rem.GetCount(); i++)
-            ////{
-            ////    Console.ForegroundColor = ConsoleColor.Red;
-            ////    Console.WriteLine(rem.Get(i).GetType().Name);
-            ////    Console.ForegroundColor = ConsoleColor.Gray;
-            ////    Console.WriteLine(rem.Get(i));
-            ////    Console.WriteLine(line);
-            ////}
-            ////rem.Save();
-            ////Console.ReadKey();
-            ////rem.Delete(1);
-
-            ////Console.Clear();
-
-
-            ////for (int i = 0; i < rem.GetCount(); i++)
-            ////{
-            ////    Console.ForegroundColor = ConsoleColor.Red;
-            ////    Console.WriteLine(rem.Get(i).GetType().Name);
-            ////    Console.ForegroundColor = ConsoleColor.Gray;
-            ////    Console.WriteLine(rem.Get(i));
-            ////    Console.WriteLine(line);
-            ////}
-
-            ////rem.Save();
-
-            //while (true)
-            //{
-            //    Console.WriteLine(Console.ReadKey(true).Key);
-            //}
 
             //switch (ui.AskMenu())
             //{
@@ -102,7 +41,26 @@ namespace MiniManagement
             //        break;
             //}
 
+            string connectionString = "SERVER=localhost; DATABASE= real_estate_management; UID=root; PASSWORD=;";
 
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM apartment_apartmentcomplex";
+            MySqlDataReader Reader;
+            connection.Open();
+            Reader = command.ExecuteReader();
+
+            while (Reader.Read())
+            {
+                string row = "";
+                for (int i = 0; i < Reader.FieldCount; i++)
+                {
+                    row += Reader.GetValue(i).ToString() + ", ";
+                }
+                Console.WriteLine(row);
+            }
+
+            connection.Close();
 
             Console.ReadKey();
         }

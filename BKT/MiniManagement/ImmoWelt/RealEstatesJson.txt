@@ -1,0 +1,41 @@
+{
+  "$type": "System.Collections.Generic.List`1[[MiniManagement.RealEstate, MiniManagement]], mscorlib",
+  "$values": [
+    {
+      "$type": "MiniManagement.Home, MiniManagement",
+      "PlotSize": 1.2,
+      "Rooms": 3,
+      "ForSale": true,
+      "PurchasePrice": 4.5,
+      "ForRent": false,
+      "RentalPrice": 0.0,
+      "Address": {
+        "$type": "MiniManagement.Address, MiniManagement",
+        "Country": "Deutschland",
+        "State": "NRW",
+        "Zip": "57399",
+        "City": "Kirchhundem",
+        "Street": "Kapellenweg",
+        "HouseNumber": "3"
+      }
+    },
+    {
+      "$type": "MiniManagement.Apartment, MiniManagement",
+      "CommonEntrance": true,
+      "Rooms": 4,
+      "ForSale": false,
+      "PurchasePrice": 0.0,
+      "ForRent": true,
+      "RentalPrice": 9.4,
+      "Address": {
+        "$type": "MiniManagement.Address, MiniManagement",
+        "Country": "Deutschland",
+        "State": "NRW",
+        "Zip": "57399",
+        "City": "Kirchhundem",
+        "Street": "Kapellenweg",
+        "HouseNumber": "3"
+      }
+    }
+  ]
+}

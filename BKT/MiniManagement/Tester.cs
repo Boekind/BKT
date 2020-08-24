@@ -20,9 +20,13 @@ namespace MiniManagement
 
             RealEstateManagement rem = new RealEstateManagement();
 
-            //rem.LoadJson();
-
+            //rem.Add(home);
+            //rem.Add(apartment);
+            //rem.Add(ac);
             //rem.ShowAllRealEstates();
+
+            //rem.SaveJson();
+
 
 
             //switch (ui.AskMenu())

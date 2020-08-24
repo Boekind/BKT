@@ -16,8 +16,11 @@ namespace MiniManagement
     class RealEstateManagement
     {
         //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
-        string fileNameBasic = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
-        string fileNameJson = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
+        //string fileNameBasic = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
+        //string fileNameJson = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
+
+        string fileNameBasic = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
+        string fileNameJson = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
 
         Home Test;
 
@@ -46,6 +49,7 @@ namespace MiniManagement
             //Apartment zum Komplex hinzufügen?
             Console.WriteLine("Zum Verkauf? (true/false)");
             bool forSale = bool.Parse(Console.ReadLine());
+
             Console.WriteLine("Verkaufspreis?");
             double purchasePrice = double.Parse(Console.ReadLine());
 

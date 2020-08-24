@@ -36,6 +36,22 @@
         "Street": "Kapellenweg",
         "HouseNumber": "3"
       }
+    },
+    {
+      "$type": "MiniManagement.ApartmentComplex, MiniManagement",
+      "ForSale": true,
+      "PurchasePrice": 123.44,
+      "ForRent": false,
+      "RentalPrice": 0.0,
+      "Address": {
+        "$type": "MiniManagement.Address, MiniManagement",
+        "Country": "Deutschland",
+        "State": "NRW",
+        "Zip": "57399",
+        "City": "Kirchhundem",
+        "Street": "Kapellenweg",
+        "HouseNumber": "3"
+      }
     }
   ]
 }

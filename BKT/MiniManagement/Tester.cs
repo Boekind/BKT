@@ -18,7 +18,7 @@ namespace MiniManagement
             //Apartment apartment = new Apartment(true, 4, false, 0, true, 9.4, address);
             //ApartmentComplex ac = new ApartmentComplex(true, 123.44, false, 0, address);
 
-            //RealEstateManagement rem = new RealEstateManagement();
+            RealEstateManagement rem = new RealEstateManagement();
 
             //rem.LoadJson();
 
@@ -41,26 +41,35 @@ namespace MiniManagement
             //        break;
             //}
 
-            string connectionString = "SERVER=localhost; DATABASE= real_estate_management; UID=root; PASSWORD=;";
+            //string connectionString = "SERVER=localhost; DATABASE= real_estate_management; UID=root; PASSWORD=;";
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM apartment_apartmentcomplex";
-            MySqlDataReader Reader;
-            connection.Open();
-            Reader = command.ExecuteReader();
+            //MySqlConnection connection = new MySqlConnection(connectionString);
+            //MySqlCommand command = connection.CreateCommand();
+            //command.CommandText = "SELECT * FROM apartment_apartmentcomplex";
+            //MySqlDataReader Reader;
+            //connection.Open();
+            //Reader = command.ExecuteReader();
 
-            while (Reader.Read())
-            {
-                string row = "";
-                for (int i = 0; i < Reader.FieldCount; i++)
-                {
-                    row += Reader.GetValue(i).ToString() + ", ";
-                }
-                Console.WriteLine(row);
-            }
+            //while (Reader.Read())
+            //{
+            //    string row = "";
+            //    for (int i = 0; i < Reader.FieldCount; i++)
+            //    {
+            //        row += Reader.GetValue(i).ToString() + ", ";
+            //    }
+            //    Console.WriteLine(row);
+            //}
 
-            connection.Close();
+            //connection.Close();
+
+            rem.ShowAllRealEstates();
+
+
+            rem.AddNew();
+
+            rem.ShowAllRealEstates();
+
+
 
             Console.ReadKey();
         }

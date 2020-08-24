@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
@@ -37,40 +38,70 @@ namespace MiniManagement
         public void AddNew()
         {
             RealEstate newRealEstate;
-            int welcheArt = 0;
 
-            Console.WriteLine("Welche Art?");
+            Console.WriteLine("Welche Art von Immobilie?");
+            Console.WriteLine("1 für Haus; 2 für Apartment; 3 für Apartmentkomplex");
+            int formOfRealEstate = int.Parse(Console.ReadLine());
             //1 für Home, 2 für Apartment, 3 für Apartmentkomplex
             //Apartment zum Komplex hinzufügen?
-            Console.WriteLine("Zum Verkauf?");
-
+            Console.WriteLine("Zum Verkauf? (true/false)");
+            bool forSale = bool.Parse(Console.ReadLine());
             Console.WriteLine("Verkaufspreis?");
-            Console.WriteLine("Zur Vermietung?");
-            Console.WriteLine("Mietpreis?");
-            Console.WriteLine("Adresse:");
-            Console.WriteLine("Land?");
-            Console.WriteLine("Bundesstaat/Bundesland?");
-            Console.WriteLine("PLZ?");
-            Console.WriteLine("Stadt?");
-            Console.WriteLine("Straße?");
-            Console.WriteLine("Hausnummer?");
+            double purchasePrice = double.Parse(Console.ReadLine());
 
-            switch (welcheArt)
+            Console.WriteLine("Zur Vermietung? (true/false)");
+            bool forRent = bool.Parse(Console.ReadLine());
+            Console.WriteLine("Mietpreis?");
+            double rentalPrice = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Adresse:");
+
+            Console.WriteLine("Land?");
+            string country = Console.ReadLine();
+            Console.WriteLine("Bundesstaat/Bundesland?");
+            string state = Console.ReadLine();
+            Console.WriteLine("PLZ?");
+            string zip = Console.ReadLine();
+            Console.WriteLine("Stadt?");
+            string city = Console.ReadLine();
+            Console.WriteLine("Straße?");
+            string street = Console.ReadLine();
+            Console.WriteLine("Hausnummer?");
+            string houseNumber = Console.ReadLine();
+
+            Address address = new Address(country, state, zip, city, street, houseNumber);
+
+            int rooms = 0;
+
+            switch (formOfRealEstate)
             {
                 case 1: // Home
                     Console.WriteLine("Anzahl Räume?");
+                    rooms = int.Parse(Console.ReadLine());
                     Console.WriteLine("Größe Grundstück (m²)");
-                    //newRealEstate = new Home();
+                    double plotSize = double.Parse(Console.ReadLine());
+
+                    newRealEstate = new Home(plotSize, rooms, forSale, purchasePrice, forRent, rentalPrice, address);
                     break;
                 case 2: //Apartment
                     Console.WriteLine("Anzahl Räume?");
+                    rooms = int.Parse(Console.ReadLine());
                     Console.WriteLine("Gemeinsamer Eingang?");
+                    bool commonEntrance = bool.Parse(Console.ReadLine());
+
+                    newRealEstate = new Apartment(commonEntrance, rooms, forSale, purchasePrice, forRent, rentalPrice, address);
                     //newRealEstate = new Apartment();
                     break;
                 case 3: //Apartmentkomplex
+                    newRealEstate = new ApartmentComplex(forSale, purchasePrice, forRent, rentalPrice, address);
                     //newRealEstate = new ApartmentComplex();
                     break;
+                default: //Fehler noch abfangen
+                    newRealEstate = new Home();
+                    break;
             }
+
+            reList.Add(newRealEstate);
         }
 
         public string GetInputValue(string input)

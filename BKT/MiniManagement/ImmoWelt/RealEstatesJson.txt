@@ -2,9 +2,7 @@
   "$type": "System.Collections.Generic.List`1[[MiniManagement.RealEstate, MiniManagement]], mscorlib",
   "$values": [
     {
-      "$type": "MiniManagement.Home, MiniManagement",
-      "PlotSize": 1.2,
-      "Rooms": 3,
+      "$type": "MiniManagement.RealEstate, MiniManagement",
       "ForSale": true,
       "PurchasePrice": 4.5,
       "ForRent": false,
@@ -20,9 +18,7 @@
       }
     },
     {
-      "$type": "MiniManagement.Apartment, MiniManagement",
-      "CommonEntrance": true,
-      "Rooms": 4,
+      "$type": "MiniManagement.RealEstate, MiniManagement",
       "ForSale": false,
       "PurchasePrice": 0.0,
       "ForRent": true,
@@ -38,7 +34,7 @@
       }
     },
     {
-      "$type": "MiniManagement.ApartmentComplex, MiniManagement",
+      "$type": "MiniManagement.RealEstate, MiniManagement",
       "ForSale": true,
       "PurchasePrice": 123.44,
       "ForRent": false,
@@ -51,6 +47,22 @@
         "City": "Kirchhundem",
         "Street": "Kapellenweg",
         "HouseNumber": "3"
+      }
+    },
+    {
+      "$type": "MiniManagement.ApartmentComplex, MiniManagement",
+      "ForSale": true,
+      "PurchasePrice": 888.0,
+      "ForRent": false,
+      "RentalPrice": 0.0,
+      "Address": {
+        "$type": "MiniManagement.Address, MiniManagement",
+        "Country": "888",
+        "State": "888",
+        "Zip": "888",
+        "City": "888",
+        "Street": "888",
+        "HouseNumber": "888"
       }
     }
   ]

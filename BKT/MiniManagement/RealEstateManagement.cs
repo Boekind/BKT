@@ -16,11 +16,15 @@ namespace MiniManagement
     class RealEstateManagement
     {
         //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
+
         //string fileNameBasic = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
         //string fileNameJson = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
 
-        string fileNameBasic = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
-        string fileNameJson = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
+        string fileNameBasic = Path.Combine(Environment.CurrentDirectory, "RealEstatesBasic.txt");
+        string fileNameJson = Path.Combine(Environment.CurrentDirectory, "RealEstatesJson.txt");
+
+        //string fileNameBasic = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
+        //string fileNameJson = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
 
         Home Test;
 
@@ -90,7 +94,7 @@ namespace MiniManagement
                 case 2: //Apartment
                     Console.WriteLine("Anzahl Räume?");
                     rooms = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Gemeinsamer Eingang?");
+                    Console.WriteLine("Gemeinsamer Eingang? (true/false)");
                     bool commonEntrance = bool.Parse(Console.ReadLine());
 
                     newRealEstate = new Apartment(commonEntrance, rooms, forSale, purchasePrice, forRent, rentalPrice, address);
@@ -106,6 +110,7 @@ namespace MiniManagement
             }
 
             reList.Add(newRealEstate);
+            Console.WriteLine("Immobilie wurde hinzugefügt!");
         }
 
         public string GetInputValue(string input)
@@ -151,7 +156,7 @@ namespace MiniManagement
 
         public void LoadJson()
         {
-            List<RealEstate> tempList = JsonConvert.DeserializeObject<List<RealEstate>>(File.ReadAllText(fileNameJson));
+            List<RealEstate> tempList = JsonConvert.DeserializeObject<List<RealEstate>>(File.ReadAllText(fileNameJson), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
 
             if (tempList != null)
             {

@@ -15,16 +15,9 @@ namespace MiniManagement
 {
     class RealEstateManagement
     {
-        //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
-
-        //string fileNameBasic = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
-        //string fileNameJson = @"C:\Users\Bökint\Documents\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
-
         string fileNameBasic = Path.Combine(Environment.CurrentDirectory, "RealEstatesBasic.txt");
         string fileNameJson = Path.Combine(Environment.CurrentDirectory, "RealEstatesJson.txt");
 
-        //string fileNameBasic = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesBasic.txt";
-        //string fileNameJson = @"C:\Users\Julia\Documents\GIT BKT\BKT\BKT\MiniManagement\ImmoWelt\RealEstatesJson.txt";
 
         Home Test;
 

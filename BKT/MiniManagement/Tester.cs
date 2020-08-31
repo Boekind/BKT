@@ -29,64 +29,61 @@ namespace MiniManagement
 
 
 
-            while (true)
-            {
-                Console.Clear();
-                switch (ui.AskMenu())
-                {
-                    case ConsoleKey.D1:
-                    case ConsoleKey.NumPad1:
-                        rem.ShowAllRealEstates();
-                        break;
-                    case ConsoleKey.D2:
-                    case ConsoleKey.NumPad2:
-                        rem.AddNew();
-                        break;
-                    case ConsoleKey.D3:
-                    case ConsoleKey.NumPad3:
-                        Console.WriteLine("Index eingeben:");
-                        int index = int.Parse(Console.ReadLine());
-                        rem.Delete(index);
-                        break;
-                    case ConsoleKey.D4:
-                    case ConsoleKey.NumPad4:
-                        Console.WriteLine("Wird gespeichert.");
-                        rem.SaveJson();
-                        break;
-                }
-
-                Console.ReadKey();
-            }
-
-            //string connectionString = "SERVER=localhost; DATABASE= real_estate_management; UID=root; PASSWORD=;";
-
-            //MySqlConnection connection = new MySqlConnection(connectionString);
-            //MySqlCommand command = connection.CreateCommand();
-            //command.CommandText = "SELECT * FROM apartment_apartmentcomplex";
-            //MySqlDataReader Reader;
-            //connection.Open();
-            //Reader = command.ExecuteReader();
-
-            //while (Reader.Read())
+            //while (true)
             //{
-            //    string row = "";
-            //    for (int i = 0; i < Reader.FieldCount; i++)
+            //    Console.Clear();
+            //    switch (ui.AskMenu())
             //    {
-            //        row += Reader.GetValue(i).ToString() + ", ";
+            //        case ConsoleKey.D1:
+            //        case ConsoleKey.NumPad1:
+            //            rem.ShowAllRealEstates();
+            //            break;
+            //        case ConsoleKey.D2:
+            //        case ConsoleKey.NumPad2:
+            //            rem.AddNew();
+            //            break;
+            //        case ConsoleKey.D3:
+            //        case ConsoleKey.NumPad3:
+            //            Console.WriteLine("Index eingeben:");
+            //            int index = int.Parse(Console.ReadLine());
+            //            rem.Delete(index);
+            //            break;
+            //        case ConsoleKey.D4:
+            //        case ConsoleKey.NumPad4:
+            //            Console.WriteLine("Wird gespeichert.");
+            //            rem.SaveJson();
+            //            break;
             //    }
-            //    Console.WriteLine(row);
+
+            //    Console.ReadKey();
             //}
 
-            //connection.Close();
+            string connectionString = "SERVER=localhost; DATABASE= real_estate_management; UID=root; PASSWORD=;";
 
-            //rem.ShowAllRealEstates();
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM address";
+            MySqlDataReader Reader;
+            connection.Open();
+            Reader = command.ExecuteReader();
+
+            while (Reader.Read())
+            {
+                Console.WriteLine("Immobilie:");
+                string row = "";
+                for (int i = 0; i < Reader.FieldCount; i++)
+                {
+                    row += Reader.GetName(i)+ ": " +Reader.GetValue(i).ToString() + " ";
+                }
+                Console.WriteLine(row);
+            }
+
+            connection.Close();
 
 
-            //rem.AddNew();
-
-            //rem.ShowAllRealEstates();
-
-
+            Console.ReadKey();
         }
     }
 }
+
+//Wie Spalten? Address_ID? AddressID? Address_Id?

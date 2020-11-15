@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
-    class RealEstateManagement
+    public class RealEstateManagement
     {
         //string fileName = Path.Combine(Environment.CurrentDirectory, "RealEstates.txt");
 

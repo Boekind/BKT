@@ -8,7 +8,7 @@ using System.Net.Configuration;
 
 namespace MiniManagement
 {
-    class Tester
+    public class Tester
     {
         static void Main(string[] args)
         {
@@ -31,6 +31,7 @@ namespace MiniManagement
 
             while (true)
             {
+                
                 Console.Clear();
                 switch (ui.AskMenu())
                 {

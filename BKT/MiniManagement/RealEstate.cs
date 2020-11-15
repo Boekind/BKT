@@ -8,7 +8,7 @@ namespace MiniManagement
 {
     [Serializable]
     /*abstract*/
-    class RealEstate
+     public class RealEstate
     {
         public bool ForSale { get; set; }
         public double PurchasePrice { get; set; }

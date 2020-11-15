@@ -35,6 +35,7 @@ namespace WpfTest
             //mainPanel.Children.Add(DGrid);
 
             // Create the Grid    
+
             Grid DynamicGrid = new Grid();
             DynamicGrid.Width = 400;
             DynamicGrid.HorizontalAlignment = HorizontalAlignment.Left;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MiniManagement
 {
     [Serializable]
-    class Home : LivingUnit
+    public class Home : LivingUnit
     {
         public double PlotSize { get; set; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniManagement
 {
-    class Ui
+    public class Ui
     {
         public ConsoleKey AskMenu()
         {

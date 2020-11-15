@@ -29,7 +29,7 @@ namespace MiniManagement
 
 
 
-<<<<<<< HEAD
+
             while (true)
             {
                 
@@ -70,9 +70,8 @@ namespace MiniManagement
             //Reader = command.ExecuteReader();
 
             //while (Reader.Read())
-=======
+
             //while (true)
->>>>>>> cbf996a61171a5c4bd51a04648f06c951c31b744
             //{
             //    Console.Clear();
             //    switch (ui.AskMenu())

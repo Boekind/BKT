@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniManagementTests", "Mini
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniManagementWPF", "MiniManagementWPF\MiniManagementWPF.csproj", "{A9BFA54A-6DBB-49EC-A925-DEAD796D1A55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniManagementForms", "MiniManagementForms\MiniManagementForms.csproj", "{0F0137A5-3593-4DCD-AAAD-0C050F78FE04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A9BFA54A-6DBB-49EC-A925-DEAD796D1A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9BFA54A-6DBB-49EC-A925-DEAD796D1A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9BFA54A-6DBB-49EC-A925-DEAD796D1A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0137A5-3593-4DCD-AAAD-0C050F78FE04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0137A5-3593-4DCD-AAAD-0C050F78FE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0137A5-3593-4DCD-AAAD-0C050F78FE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0137A5-3593-4DCD-AAAD-0C050F78FE04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

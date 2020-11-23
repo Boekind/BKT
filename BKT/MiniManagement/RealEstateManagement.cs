@@ -20,8 +20,7 @@ namespace MiniManagement
 
 
         Home Test;
-
-        List<RealEstate> reList;
+        public List<RealEstate> reList { get; set; } 
         public RealEstateManagement()
         {
             reList = new List<RealEstate>();

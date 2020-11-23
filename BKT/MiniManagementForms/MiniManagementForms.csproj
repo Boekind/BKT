@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiniManagement\MiniManagement.csproj">
+      <Project>{cda05138-aae5-4c5d-b8c8-4cbeb124ea6e}</Project>
+      <Name>MiniManagement</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

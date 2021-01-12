@@ -31,5 +31,22 @@ namespace FormsTest
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            progressBar1.Value += 10;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile(@"C:\Users\Julia\Desktop\Bilder\unknown.png");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile(@"C:\Users\Julia\Desktop\Bilder\pngegg.png");
+        }
+
+       
     }
 }
